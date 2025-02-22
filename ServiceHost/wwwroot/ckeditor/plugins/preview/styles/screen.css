@@ -1,0 +1,10 @@
+div[style*="page-break-after"] {
+    background: url(../images/pagebreak.gif) no-repeat center center;
+    border-bottom: #999 1px dotted;
+    border-top: #999 1px dotted;
+    clear: both;
+    cursor: default;
+    height: 7px;
+    padding: 0;
+    width: 100%;
+}

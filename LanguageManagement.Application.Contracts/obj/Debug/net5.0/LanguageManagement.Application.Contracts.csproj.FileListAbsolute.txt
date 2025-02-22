@@ -1,0 +1,15 @@
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\bin\Debug\net5.0\LanguageManagement.Application.Contracts.deps.json
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\bin\Debug\net5.0\LanguageManagement.Application.Contracts.dll
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\bin\Debug\net5.0\LanguageManagement.Application.Contracts.pdb
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\bin\Debug\net5.0\My_Shop_Framework.dll
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\bin\Debug\net5.0\My_Shop_Framework.pdb
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\obj\Debug\net5.0\LanguageManagement.Application.Contracts.csproj.AssemblyReference.cache
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\obj\Debug\net5.0\LanguageManagement.Application.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\obj\Debug\net5.0\LanguageManagement.Application.Contracts.AssemblyInfoInputs.cache
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\obj\Debug\net5.0\LanguageManagement.Application.Contracts.AssemblyInfo.cs
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\obj\Debug\net5.0\LanguageManagement.Application.Contracts.csproj.CoreCompileInputs.cache
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\obj\Debug\net5.0\Language.3DDAB5E0.Up2Date
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\obj\Debug\net5.0\LanguageManagement.Application.Contracts.dll
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\obj\Debug\net5.0\refint\LanguageManagement.Application.Contracts.dll
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\obj\Debug\net5.0\LanguageManagement.Application.Contracts.pdb
+D:\Source\RefaCoPersentaion\LanguageManagement.Application.Contracts\obj\Debug\net5.0\ref\LanguageManagement.Application.Contracts.dll

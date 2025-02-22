@@ -1,0 +1,123 @@
+﻿@page "/ArticleList"
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using My_ShopQuery.Contract.GeneralSetting
+@using System.Globalization
+@using My_Shop_Framework.Application
+@model ArticleCategoryModel
+@inject IGeneralSettingQueryModel GeneralSetting
+@inject IViewLocalizer Localizer
+@{
+    var general = GeneralSetting.GeneralSettingQueryModel();
+    ViewData["Title"] = Localizer["Articles"];
+    ViewData["keywords"] = general.MetaKeywords;
+    ViewData["metaDescription"] = general.MetaDescription;
+}
+
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li><a href="/">@Localizer["Home"]</a></li>
+                <li><span>/</span></li>
+                <li>
+                    <h6>@Localizer["Articles"]</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="news-one">
+    <div class="col-xl-12 col-lg-12" style="text-align: center;">
+        <div class="services-one__top-left">
+            <div class="section-title text-left">
+                <div class="section-sub-title-box">
+                    <h1 class="section-sub-title">@Localizer["Articles"]</h1>
+                    @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                    {
+                        <div class="section-title-shape-1">
+                            <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                        </div>
+                        <div class="section-title-shape-2">
+                            <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="section-title-shape-1">
+                            <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                        </div>
+                        <div class="section-title-shape-2">
+                            <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            @foreach (var article in Model.Articles)
+            {
+                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp animated" data-wow-delay="100ms" style="visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
+                    <div class="news-one__single">
+                        <div class="news-one__img">
+                            <a href="/ArticleDetails/@article.Slug" style="display: block;">
+                                <img src="~/images/@article.Picture" alt="@article.PictureAlt" title="@article.PictureTitle" class="img-fluid">
+                            </a>
+                            <div class="news-one__tag">
+                                <p><i class="far fa-folder"></i>@article.CategoryName</p>
+                            </div>
+                            <div class="news-one__arrow-box">
+                                <a href="/ArticleDetails/@article.Slug" class="news-one__arrow">
+                                    <span class="icon-right-arrow icon-right-arrow-s"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="news-one__content">
+                            <ul class="list-unstyled news-one__meta">
+                                <li>
+                                    <a href="/ArticleDetails/@article.Slug">
+                                        <i class="far fa-calendar"></i>
+                                        @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                        {
+                                            @article.PublishDate
+                                        }
+                                        else
+                                        {
+                                            @article.PublishDate.ToGeorgianDateTime().ToString("yyyy MMMM dd")
+                                        }
+                                    </a>
+                                </li>
+                            </ul>
+                            <h3 class="news-one__title">
+                                <a href="/ArticleDetails/@article.Slug">@article.Title</a>
+                            </h3>
+                            <p class="news-one__text">
+                                @{
+                                    string text = article.ShortDescription;
+                                    string displayText = text.Length > 100 ? text.Substring(0, 100) + "..." : text;
+                                }
+                                @displayText
+                            </p>
+                            <div class="news-one__read-more">
+                                <a href="/ArticleDetails/@article.Slug">
+                                    @Localizer["More"]
+                                    @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                    {
+                                        <i class="fas fa-angle-double-left"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-angle-double-right"></i>
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>

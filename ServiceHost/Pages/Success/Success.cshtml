@@ -1,0 +1,21 @@
+﻿@page "/Success"
+@using Microsoft.AspNetCore.Mvc.Localization
+@model SuccessModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Localizer["Header"];
+  
+}
+@section Css
+{
+    <link href="~/assets/success/success.css" rel="stylesheet"/>
+}
+
+<div class="text-center" >
+    <div class="success-container">
+        <div class="icon">✅</div>
+        <h1>@Localizer["successful"]</h1>
+        <p>@Localizer["Thanks"]</p>
+        <a href="/" class="btn">@Localizer["String1"]</a>
+    </div>
+</div>

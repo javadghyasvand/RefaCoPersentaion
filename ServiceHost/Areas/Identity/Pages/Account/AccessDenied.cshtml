@@ -1,0 +1,16 @@
+﻿@page "/Identity/Account/AccessDenied"
+@using Microsoft.AspNetCore.Mvc.Localization
+@model ServiceHost.Areas.Identity.Pages.Account.AccessDeniedModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<div class="wrapper-page">
+    <div class="ex-page-content text-center">
+        <h1 class="title">403!</h1>
+        <h2 class="title">@Localizer["NotAccess"]</h2><br>
+        <br>
+        <a class="btn btn-purple btn-block btn-lg waves-effect waves-light" href="/">@Localizer["Back"]</a>
+    </div>
+</div>

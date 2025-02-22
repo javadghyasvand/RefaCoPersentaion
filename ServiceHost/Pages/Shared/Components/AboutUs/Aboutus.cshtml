@@ -1,0 +1,127 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+@using My_ShopQuery.Contract.GeneralSetting
+@model My_ShopQuery.Contract.AboutUs.AboutUsQueryModel
+@inject IViewLocalizer Localizer
+@inject IGeneralSettingQueryModel _general
+@if (Model != null)
+{
+    <section class="get-insuracne-two">
+        <div class="get-insuracne-two-shape-3 float-bob-x">
+            <img width="" src="~/assets/images/shapes/6.jpg" alt="">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="get-insuracne-two__right">
+                        <div class="section-title text-center">
+                            <div class="section-sub-title-box">
+                                <p class="section-sub-title">@Localizer["Video"]</p>
+                                @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                {
+                                    <div class="section-title-shape-1">
+                                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                    </div>
+                                    <div class="section-title-shape-2">
+                                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="section-title-shape-1">
+                                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                    </div>
+                                    <div class="section-title-shape-2">
+                                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="get-insuracne-two__tab clearfix">
+                            <div class="get-insuracne-two__tab-box tabs-box clearfix text-left"
+                                 style="text-align: left !important; position: relative;">
+                                <!-- دکمه پخش -->
+                                <a type="button" class="main-slider-two__video-icon player" id="playButton"
+                                   style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer; z-index: 2;">
+                                    <span class="fa fa-play player-span" style="font-size: 40px; color: white;"></span>
+                                </a>
+                                <!-- ویدیو -->
+                                <video id="infoVideo" width="100%" preload="none" poster="~/Images/@Model.Poster"
+                                       style="display: block; cursor: pointer;">
+                                    <source src="~/Images/@Model.Video" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about-one pt-5">
+        <div class="about-one-bg wow slideInRight" data-wow-delay="200ms" data-wow-duration="500ms"
+             style="background-image: url(assets/images/AfzarAzma/Background/bg-002.jpg);">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="about-one__left">
+                        <div class="about-one__img-box wow slideInLeft" data-wow-delay="200ms"
+                             data-wow-duration="500ms">
+                            <div class="about-one__img">
+                                <img src="~/assets/images/AfzarAzma/Background/bg-001.jpg" alt="">
+                            </div>
+                            <div class="about-one__img-two">
+                                <img src="~/assets/images/AfzarAzma/Background/bg-002.jpg" alt="">
+                            </div>
+                            <div class="about-one__experience">
+                                <h2 class="about-one__experience-year">45</h2>
+                                <p class="about-one__experience-text">@Localizer["Year"]<br> @Localizer["Experince"]</p>
+                            </div>
+                            <div class="about-one__shape-1">
+                                <img src="assets/images/shapes/about-one-shape-1.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="about-one__right">
+                        <div class="section-title text-left">
+                            <div class="section-sub-title-box">
+                                <p class="section-sub-title">@Localizer["Company"]</p>
+                                @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                {
+                                    <div class="section-title-shape-1">
+                                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                    </div>
+                                    <div class="section-title-shape-2">
+                                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="section-title-shape-1">
+                                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                    </div>
+                                    <div class="section-title-shape-2">
+                                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                    </div>
+                                }
+                            </div>
+                            <h2 class="section-title__title">@Model.Title</h2>
+                        </div>
+                        <p class="about-one__text-2" style="text-align: justify;">
+                            @Model.ShortDescription
+                        </p>
+                        <div class="about-one__btn-call">
+                            <div class="about-one__btn-box">
+                                <a href="/AboutUs" class="thm-btn about-one__btn">@Localizer["More"] </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

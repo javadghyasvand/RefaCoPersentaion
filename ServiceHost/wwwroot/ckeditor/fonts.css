@@ -1,0 +1,14 @@
+﻿
+@font-face {
+    font-family: "irsans";
+    font-style: normal;
+    font-weight: 300;
+    src: url("../assets/font/IRANSansWeb(FaNum).eot");
+    src: url("../assets/font/IRANSansWeb(FaNum).eot") format("embedded-opentype"), url("../assets/font/IRANSansWeb(FaNum).woff") format("woff"), url("../assets/font/IRANSansWeb(FaNum).woff2")format("woff"), url("../assets/font/IRANSansWeb(FaNum).ttf") format("truetype");
+}
+@font-face {
+    font-family: "irsansNubEn";
+    font-style: normal;
+    font-weight: 300;
+    src: url("../assets/font/iran/IRANSans.ttf");
+}

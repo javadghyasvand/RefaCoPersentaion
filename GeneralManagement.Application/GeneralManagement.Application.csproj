@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nancy" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GeneralManagement.Application.Contracts\GeneralManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="..\GeneralManagement.Domain\GeneralManagement.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

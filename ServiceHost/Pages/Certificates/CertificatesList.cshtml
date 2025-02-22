@@ -1,0 +1,89 @@
+﻿@page "/CertificatesList"
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.GeneralSetting
+@model CertificatesListModel
+@inject IGeneralSettingQueryModel GeneralSetting
+@inject IViewLocalizer Localizer
+@{
+    var general = GeneralSetting.GeneralSettingQueryModel();
+
+}
+@{
+    ViewData["Title"] = Localizer["Certificates"];
+    ViewData["keywords"] = general.MetaKeywords;
+    ViewData["metaDescription"] = general.MetaDescription;
+}
+
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li><span>/</span></li>
+                <li>
+                    <h6>@Localizer["Certificates"]</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="feature-one">
+    <div class="container">
+        <div class="col-xl-12 col-lg-12" style="text-align: center;">
+            <div class="services-one__top-left">
+                <div class="section-title text-left">
+                    <div class="section-sub-title-box">
+                        <h1 class="section-sub-title">@Localizer["CertificateReceived"]</h1>
+                        @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                        {
+                            <div class="section-title-shape-1">
+                                <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                            </div>
+                            <div class="section-title-shape-2">
+                                <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="section-title-shape-1">
+                                <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                            </div>
+                            <div class="section-title-shape-2">
+                                <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="feature-one__inner">
+            <div class="row">
+                @foreach (var item in Model.Certificate)
+                {
+                    <div class="col-xl-4 col-lg-4 wow fadeInRightBig animated" data-wow-delay="500ms">
+                        <div class="feature-one__single">
+                            <a href="/CertificatesDetails/@item.Id" style="display: block; color: inherit; text-decoration: none;">
+                                <div class="feature-one__single-inner">
+                                    <div class="feature-one__icon">
+                                        <span>
+                                            <img style="width: 60px;" src="Images/@item.IconString" alt="@item.Title">
+                                        </span>
+                                    </div>
+                                    <div class="feature-one__shape">
+                                        <img src="assets/images/shapes/feature-one-shape-1.png" alt="">
+                                    </div>
+                                    <h3 class="feature-one__title">@item.Title</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+        </div>
+    </div>
+</section>

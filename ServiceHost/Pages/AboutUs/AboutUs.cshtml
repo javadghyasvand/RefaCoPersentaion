@@ -1,0 +1,119 @@
+﻿@page "/AboutUs"
+@model AboutUsModel
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.GeneralSetting
+@inject IGeneralSettingQueryModel GeneralSetting
+@inject IViewLocalizer Localizer
+@{
+    var general = GeneralSetting.GeneralSettingQueryModel();
+
+    ViewData["Title"] = Localizer["AboutUs"];
+    ViewData["keywords"] = general.MetaKeywords;
+    ViewData["metaDescription"] = general.MetaDescription;
+}
+
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li>
+                    <span>/</span>
+                </li>
+                <li>
+                    <h6>@Model.AboutUsQueryModel.Title</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="about-four mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="about-four__left">
+                    <div class="about-four__img-box wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
+                        <div class="about-four__img">
+                            <img src="assets/images/AfzarAzma/Banner/Header-2.jpg" alt="">
+                        </div>
+                        <div class="about-four__img-two">
+                            <img src="assets/images/AfzarAzma/Background/bg-002.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 pt-5">
+                <div class="about-four__right">
+                    <div class="section-title text-left">
+                        <div class="section-sub-title-box">
+                            <h1 class="section-sub-title">@Localizer["AboutCompany"]</h1>
+                            @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                            {
+                                <div class="section-title-shape-1">
+                                    <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                </div>
+                                <div class="section-title-shape-2">
+                                    <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="section-title-shape-1">
+                                    <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                </div>
+                                <div class="section-title-shape-2">
+                                    <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="tilte-waranty">
+                        <div class="wow fadeInUp animated" data-wow-delay="100ms"
+                             style="visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
+                            <p class="about-four__text-1">
+                                @Html.Raw(Model.AboutUsQueryModel.Description)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="cta-one cta-four ">
+    <div class="cta-four-shape-1 float-bob-x">
+        <img src="assets/images/shapes/cta-four-shape-1.png" alt="@Model.AboutUsQueryModel.Description" title="@Model.GeneralSettingQuery.MetaDescription">
+    </div>
+    <div class="container">
+        <div class="cta-one__content">
+            <div class="cta-one__inner">
+                <div class="cta-one__left">
+                    <h3 class="cta-one__title">@Localizer["ContactExpert"]</h3>
+                </div>
+                <div class="cta-one__right">
+                    <div class="cta-one__call">
+                        <div class="cta-one__call-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="cta-one__call-number">
+                            @{
+                                var phone = general.PhoneNumbers.Split("#");
+                            }
+                            <a href="tel:@phone[0]">@phone[0]</a>
+                            <p>@Localizer["CallExpert"]</p>
+                        </div>
+                    </div>
+                    <div class="cta-one__btn-box">
+                        <a href="/ContactUs" class="thm-btn cta-one__btn">@Localizer["Quote"]</a>
+                    </div>
+                </div>
+                <div class="cta-one__img">
+                    <img style="width: 250px" src="assets/images/AfzarAzma/Banner/portfolio-1-1.jpg" alt="@Model.AboutUsQueryModel.Description" title="@Model.GeneralSettingQuery.MetaDescription">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

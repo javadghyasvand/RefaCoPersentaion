@@ -1,0 +1,132 @@
+﻿@page "/ProductList"
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.GeneralSetting
+@model ProductListModel
+@inject IGeneralSettingQueryModel GeneralSetting
+@inject IViewLocalizer Localizer
+@{
+    var general = GeneralSetting.GeneralSettingQueryModel();
+
+}
+@{
+    ViewData["Title"] = @Localizer["Products"];
+    ViewData["keywords"] = general.MetaKeywords;
+    ViewData["metaDescription"] = general.MetaDescription;
+}
+
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li>
+                    <span>/</span>
+                </li>
+                <li>
+                    <h6>@Localizer["Products"]</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="product">
+    <div class="container">
+        <div class="col-xl-12 col-lg-12" style="text-align: center;">
+            <div class="services-one__top-left">
+                <div class="section-title text-left">
+                    <div class="section-sub-title-box">
+                        <h1 class="section-sub-title">@Localizer["Products"]</h1>
+                        @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                        {
+                            <div class="section-title-shape-1">
+                                <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                            </div>
+                            <div class="section-title-shape-2">
+                                <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="section-title-shape-1">
+                                <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                            </div>
+                            <div class="section-title-shape-2">
+                                <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3">
+                <div class="product__sidebar">
+                    <div class="shop-category product__sidebar-single">
+                        <h3 class="product__sidebar-title">@Localizer["Category"]</h3>
+                        <ul class="list-unstyled">
+                            <li class="active">
+                                <a href="/ProductList">@Localizer["Products"]</a>
+                            </li>
+                            @foreach (var item in Model.ProductCategoryQueryModel)
+                            {
+                                <li>
+                                    <a href="/CategoryWithProduct/@item.Slug"> @item.Name </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9">
+                <div class="product__all">
+                    <div class="row">
+                        @foreach (var item in Model.ProductQueryModel)
+                        {
+                            <div class="col-xl-4 col-lg-4 col-md-6">
+                                <div class="product__all-single">
+                                    <a href="/ProductDetails/@item.Slug" class="product__all-img-link">
+                                        <div class="product__all-img">
+                                            <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle">
+                                            <div class="product__all-btn-box">
+                                                <span class="thm-btn product__all-btn">@Localizer["More"]</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="product__all-content">
+                                        <h4 class="product__all-title">
+                                            <a href="/ProductDetails/@item.Slug">@item.Name</a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script>
+        document.getElementById('productSearch').addEventListener('input',
+            function() {
+                var searchQuery = this.value.toLowerCase();
+                var products = document.querySelectorAll('.product-item');
+
+                products.forEach(function(product) {
+                    var productName = product.querySelector('.product__all-title').textContent.toLowerCase();
+                    if (productName.includes(searchQuery)) {
+                        product.style.display = 'block'; // نمایش محصول
+                    } else {
+                        product.style.display = 'none'; // پنهان کردن محصول
+                    }
+                });
+            });
+    </script>
+}

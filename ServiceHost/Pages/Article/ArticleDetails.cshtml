@@ -1,0 +1,203 @@
+﻿@page "/ArticleDetails/{id}"
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_Shop_Framework.Application
+@model ArticleDetailsModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Model.ArticleQueryModel.Title;
+    ViewData["keywords"] = @Model.ArticleQueryModel.Keywords.Replace("#", ",");
+    ViewData["metaDescription"] = @Model.ArticleQueryModel.MetDescription;
+}
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li>
+                    <span>/</span>
+                </li>
+                <li>
+                    <a href="/ArticleList">@Localizer["ArticleList"]</a>
+                </li>
+                <li>
+                    <span>/</span>
+                </li>
+                <li>
+                    <h6>@Localizer["ArticleDetails"]</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="news-details">
+    <div class="container">
+        <div class="col-xl-12 col-lg-12" style="text-align: center;">
+            <div class="services-one__top-left">
+                <div class="section-title text-left">
+                    <div class="section-sub-title-box">
+                        <h1 class="section-sub-title">@Model.ArticleQueryModel.Title</h1>
+                        @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                        {
+                            <div class="section-title-shape-1">
+                                <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                            </div>
+                            <div class="section-title-shape-2">
+                                <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="section-title-shape-1">
+                                <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                            </div>
+                            <div class="section-title-shape-2">
+                                <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-8 col-lg-7">
+                <div class="news-details__left">
+                    <div class="news-details__img">
+                        <img src="~/Images/@Model.ArticleQueryModel.Picture" alt="@Model.ArticleQueryModel.PictureAlt" title="@Model.ArticleQueryModel.PictureTitle">
+                    </div>
+                    <div class="news-details__content">
+                        <ul class="list-unstyled news-details__meta">
+                            <li>
+                                <a href="news-details.html">
+                                    <i class="far fa-calendar m-2"></i>
+                                    @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                    {
+                                        @Model.ArticleQueryModel.PublishDate
+                                    }
+                                    else
+                                    {
+                                        @Model.ArticleQueryModel.PublishDate.ToGeorgianDateTime().ToString("yyyy MMMM dd")
+                                    }
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="news-details.html">
+                                    <i class="far fa-comments m-2"></i>
+                                    @Model.ArticleQueryModel.Comments.Count()
+                                    @Localizer["Comment"]
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="news-details__text-1">
+                            @Html.Raw(@Model.ArticleQueryModel.Description)
+                        </p>
+                    </div>
+                    <div class="news-details__social-list" style="margin: 20px;">
+                        @foreach (var item in @Model.SocialMediaQueryModels)
+                        {
+                            <li style="list-style-type: none;">
+                                <a href="@item.Link">
+                                    <i class="fab fa-@item.Title"></i>
+                                </a>
+                            </li>
+                        }
+                    </div>
+                    <hr/>
+                   @if (Model.ArticleQueryModel.CommentActive)
+                   {
+                       <div class="comment-one">
+                           <h3 class="comment-one__title">
+                               @Model.ArticleQueryModel.Comments.Count()
+                               @Localizer["Comment"]
+                           </h3>
+                           @foreach (var item in Model.ArticleQueryModel.Comments)
+                           {
+                               <div class="comment-one__single">
+                                   <div class="comment-one__content">
+                                       <h3>@item.Name</h3>
+                                       <p>@item.Message</p>
+                                   </div>
+                               </div>
+                           }
+                       </div>
+
+                       <div class="comment-form">
+                           <h3 class="comment-form__title"> @Localizer["Comments"]</h3>
+                           <form method="post" class="comment-one__form contact-form-validated" novalidate="novalidate">
+                               <div class="row">
+                                   <div class="col-xl-6">
+                                       <div class="comment-form__input-box">
+                                           <input type="text" placeholder="@Localizer["Name"]" name="name">
+                                       </div>
+                                   </div>
+                                   <div class="col-xl-6">
+                                       <div class="comment-form__input-box">
+                                           <input type="email" placeholder="@Localizer["Email"]" name="email">
+                                       </div>
+                                   </div>
+                               </div>
+                               <input type="hidden" name="OwnerId" value="@Model.ArticleQueryModel.Id"/>
+                               <input type="hidden" name="articleSlug" value="@Model.ArticleQueryModel.Slug"/>
+                               <input type="hidden" name="ParentId" id="commentParentId" value=""/>
+                               <div class="row">
+                                   <div class="col-xl-12">
+                                       <div class="comment-form__input-box text-message-box">
+                                           <textarea name="message" placeholder="@Localizer["Content"]"></textarea>
+                                       </div>
+                                       <div class="comment-form__btn-box">
+                                           <button type="submit" class="thm-btn comment-form__btn">
+                                               @Localizer["Submit"]
+                                           </button>
+                                       </div>
+                                   </div>
+                               </div>
+                           </form>
+                       </div>
+                   }
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="sidebar">
+                    <div class="sidebar__single sidebar__post">
+                        <h3 class="sidebar__title">@Localizer["RecentPosts"]</h3>
+                        <ul class="sidebar__post-list list-unstyled">
+
+                            @foreach (var item in Model.ArticleQueryModelList)
+                            {
+                                if (item.Id != Model.ArticleQueryModel.Id)
+                                {
+                                    <li>
+                                        <div class="sidebar__post-image">
+                                            <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle">
+                                        </div>
+                                        <div class="sidebar__post-content">
+                                            <h3>
+                                                <span class="sidebar__post-content-meta">
+
+                                                    @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                                    {
+                                                        @item.PublishDate
+                                                    }
+                                                    else
+                                                    {
+                                                        @item.PublishDate.ToGeorgianDateTime().ToString("yyyy MMMM dd")
+                                                    }
+
+
+                                                </span>
+                                                <a href="/ArticleDetails/@item.Slug">@item.Title</a>
+                                            </h3>
+                                        </div>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

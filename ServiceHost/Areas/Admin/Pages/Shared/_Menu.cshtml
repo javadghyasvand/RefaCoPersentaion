@@ -1,0 +1,218 @@
+﻿@using AccountManagement.Domain.Account.Agg
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using My_Shop_Framework.Application
+@using My_Shop_Framework.Infrastructure
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject IAuthorizationService AuthorizationService
+
+@{
+    bool _superAdminPermission = false, _AdminPermission = false, _usersListPermission = false;
+    var user = await UserManager.GetUserAsync(User);
+
+    if (user != null)
+    {
+        var superAdminResult = await AuthorizationService.AuthorizeAsync(User, "SuperAdmin");
+        _superAdminPermission = superAdminResult.Succeeded;
+        var AdminResult = await AuthorizationService.AuthorizeAsync(User, "Admin");
+        _AdminPermission = superAdminResult.Succeeded;
+        var UsersListResult = await AuthorizationService.AuthorizeAsync(User, "UsersList");
+        _usersListPermission = superAdminResult.Succeeded;
+
+        // var basicAuthorizeResult = await AuthorizationService.AuthorizeAsync(User, "BasicPolicy");
+        // _basicAuthorizePermission = basicAuthorizeResult.Succeeded;
+    }
+
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    var roles = await UserManager.GetRolesAsync(user);
+    var role = roles.FirstOrDefault();
+    <div class="left side-menu">
+        <div class="sidebar-inner slimscrollleft">
+            <div class="user-details">
+                @*                 <div class="pull-right">
+            @if(currentAccount.ProfilePicture != "NoPhoto.png")
+            {
+            <img src="~/Images/ProfilePhotos/@currentAccount.ProfilePicture" class="thumb-md img-circle">
+            }
+            else
+            {
+            <img src="~/Images/ProfilePhotos/NoPhoto.png" class="thumb-md img-circle">
+            }
+            </div> *@
+                <div class="user-info">
+                    <div>@user.FirstName @user.LastName</div>
+                    <p class="text-muted m-0">@role</p>
+                </div>
+            </div>
+            <div id="sidebar-menu">
+                <ul>
+                    <li>
+                        <a asp-page="/Index" class="waves-effect active">
+                            <i class="md md-home"></i><span> داشبورد </span>
+                        </a>
+                    </li>
+                    @if (_AdminPermission)
+                    {
+                        <li class="has_sub">
+                            <a class="waves-effect">
+                                <i class="md md-store"></i><span> مدیریت محصولات </span>
+                                <span class="pull-right">
+                                    <i class="md md-add"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a asp-page="/Shop/Slide/Index">اسلایدر</a>
+                                </li>
+
+                                <li>
+                                    <a asp-page="/Shop/ProductCategory/Index">گروه محصولات</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/Shop/Products/Index">محصولات</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/General/Warranty/Index">گارانتی</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    @if (_usersListPermission)
+                    {
+                        <li class="has_sub">
+                            <a class="waves-effect">
+                                <i class="md md-account-circle"></i><span>مدیریت کاربران</span>
+                                <span class="pull-right">
+                                    <i class="md md-add"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a asp-page="/Account/Role/Index">مدیریت نقش ها</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/Account/Account/Index">کاربران</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/Account/Account/UserApproval ">تایید ثبت نام</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    @if (_usersListPermission)
+                    {
+                        <li class="has_sub">
+                            <a class="waves-effect">
+                                <i class="md md-comment"></i><span> مدیریت نظرات </span>
+                                <span class="pull-right">
+                                    <i class="md md-add"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a asp-page="/Comment/Index">نظرات</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/Satisfaction/Index">رضایت </a>
+                                </li>
+                                <li>
+                                    <a asp-page="/Complaint/Index">شکایات</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    @if (_usersListPermission)
+                    {
+                        <li class="has_sub">
+                            <a class="waves-effect">
+                                <i class="md md-view-list"></i><span> سیستم بلاگینگ </span>
+                                <span class="pull-right">
+                                    <i class="md md-add"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a asp-page="/Blog/ArticlesCategory/Index">مدیریت گروه بلاگ ها</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/Blog/Articles/Index">بلاگ ها</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/Events/Events/Index"> مدیریت اخبار و رویداد ها</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    @if (_usersListPermission)
+                    {
+                        <li class="has_sub">
+                            <a class="waves-effect">
+                                <i class="md md-videocam"></i><span> مدیریت ویدیوها  </span>
+                                <span class="pull-right">
+                                    <i class="md md-add"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a asp-page="/Video/IntroductionVideo/Index">مدیریت ویدیو معرفی</a>
+                                    <a asp-page="/Video/TutorialVideo/Index">مدیریت ویدیو آموزشی</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    @if (_usersListPermission)
+                    {
+                        <li class="has_sub">
+                            <a class="waves-effect">
+                                <i class="md md-settings"></i><span>تنظیمات سایت</span>
+                                <span class="pull-right">
+                                    <i class="md md-add"></i>
+                                </span>
+                            </a>
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a asp-page="/Language/Language/Index">زبان</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/General/SiteLogo/Index">لوگو</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/Faq/Index">سوالات متداول</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/General/Gallery/Index">گالری</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/General/Certificate/Index">گواهینامه ها</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/General/AboutUs/Index">درباره ما</a>
+                                </li>
+                                <li>
+                                    <a asp-page="/General/GeneralSetting/Index">تنظیمات </a>
+                                </li>
+                                <li>
+                                    <a asp-page="/General/SocialMedia/Index">فضای مجازی</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    <li>
+                        <a href="/logout" class="waves-effect text-danger">
+                            <i class="md md-exit-to-app text-danger"></i><span class="text-danger"> خروج </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+}

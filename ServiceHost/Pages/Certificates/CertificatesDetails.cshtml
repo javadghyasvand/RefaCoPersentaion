@@ -1,0 +1,87 @@
+﻿@page "/CertificatesDetails/{id}"
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.GeneralSetting
+@model CertificatesDetailsModel
+@inject IGeneralSettingQueryModel GeneralSetting
+ @inject IViewLocalizer Localizer
+@{
+    var general = GeneralSetting.GeneralSettingQueryModel();
+
+    ViewData["Title"] = Localizer["Certificate"];
+    ViewData["keywords"] = general.MetaKeywords;
+    ViewData["metaDescription"] = general.MetaDescription;
+}
+
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li><span>/</span></li>
+                <li>
+                    <h6>@Model.CertificateQueryModel.Title</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="feature-one">
+    <div class="container">
+        <div class="col-xl-12 col-lg-12" style="text-align: center;">
+            <div class="services-one__top-left">
+                <div class="section-title text-left">
+                    <div class="section-sub-title-box">
+                        <h1 class="section-sub-title">@Model.CertificateQueryModel.Title</h1>
+                        @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                        {
+                            <div class="section-title-shape-1">
+                                <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                            </div>
+                            <div class="section-title-shape-2">
+                                <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="section-title-shape-1">
+                                <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                            </div>
+                            <div class="section-title-shape-2">
+                                <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                @if (!string.IsNullOrWhiteSpace(Model.CertificateQueryModel.Pdf))
+                {
+                    {
+                        var domain = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+                   
+                    <div class="tilte-waranty">
+                        <div class="wow fadeInUp animated" data-wow-delay="100ms"
+                             style="visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
+                            <p class="about-four__text-1" style="text-align: justify">
+                                <iframe src="@domain/Images/@Model.CertificateQueryModel.Pdf" class="Ceartifacate" allowfullscreen></iframe>
+                            </p>
+                           
+                        </div>
+                    </div>
+
+                    }
+                 
+                }
+                else
+                {
+                    <div class="alert alert-danger">@Localizer["Alert"]</div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

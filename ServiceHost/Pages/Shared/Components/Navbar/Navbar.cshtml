@@ -1,0 +1,266 @@
+﻿@using System.Globalization
+@using AccountManagement.Domain.Account.Agg
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.SiteLogo
+@model My_ShopQuery.Contract.Menu.MenuQueryModel
+@inject IViewLocalizer Localizer
+@inject ISiteLogoQueryModel LogoQueryModel
+@inject UserManager<ApplicationUser> userManager
+
+<header class="main-header clearfix">
+    <nav class="main-menu clearfix">
+        <div class="main-menu__wrapper clearfix">
+            <div class="container">
+                <div class="main-menu__wrapper-inner clearfix">
+                    <div class="main-menu__left">
+                        <div class="main-menu__logo">
+                            <a href="/">
+                                <img width="140px" src="~/Images/@LogoQueryModel.GetLogo().Picture"
+                                     alt="@LogoQueryModel.GetLogo().PictureAlt" title="@LogoQueryModel.GetLogo().PictureTitle">
+                            </a>
+                        </div>
+                        <div class="main-menu__main-menu-box">
+                            <div class="main-menu__main-menu-box-inner">
+                                <a href="#" class="mobile-nav__toggler">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                                <ul class="main-menu__list">
+                                    <li>
+                                        <a href="/">@Localizer["Main"]</a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="/ProductList">@Localizer["Products"]</a>
+                                        <ul>
+                                            @foreach (var item in Model.ProductCategoryQueryModels)
+                                            {
+                                                <li>
+                                                    <a href="/CategoryWithProduct/@item.Slug">
+                                                        <b>@item.Name</b>
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a href="#">@Localizer["AfterSale"] </a>
+                                        <ul>
+                                            <li><a href="/Support"><b>@Localizer["Warranty"]</b></a></li>
+                                            <li>
+                                                <a href="/Satisfaction"><b>@Localizer["Complaints "]</b></a>
+                                            </li>
+                                            <li>
+                                                <a href="/FAQ">
+                                                    <b>@Localizer["FAQ"]</b>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/Tutorial">
+                                                    <b>@Localizer["Tutorial"]</b>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#">@Localizer["ArticlesEvents"]</a>
+                                        <ul>
+                                            <li>
+                                                <a href="/ArticleList">
+                                                    <b>@Localizer["Articles"]</b>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/EventList">
+                                                    <b>@Localizer["NEWS"]</b>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#">@Localizer["AboutUs"]</a>
+                                        <ul>
+                                            <li>
+                                                <a href="/AboutUs">
+                                                    <b>@Localizer["AboutUs"]</b>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/Gallery">
+                                                    <b>@Localizer["Gallery"]</b>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/CertificatesList">
+                                                    <b>@Localizer["OurCertificates"]</b>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown  d-xl-none d-lg-none d-sm-block d-md-block">
+                                        <a href="#">@Localizer["Language"]</a>
+                                        <ul>
+                                            @if (Model != null)
+                                            {
+                                                @foreach (var item in Model.LanguageQueries)
+                                                {
+                                                    <li>
+                                                        <a href="/ChangeLanguage?culture=@item.Language">
+                                                            <b>@item.LanguageNameShowName</b>
+                                                        </a> 
+                                                        @* <form method="get" action="/ChangeLanguage">
+                                                            <input type="hidden" name="culture" value="@item.Language" />
+                                                            <button  class="dropdown-item text-white" type="submit">@item.LanguageNameShowName</button>
+                                                        </form> *@
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </li>
+
+                                    @if (!User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="d-xl-none d-lg-none d-sm-block d-md-block">
+                                            <a href="/accountregister/login">@Localizer["Login"]</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        var user = await userManager.FindByNameAsync(User.Identity.Name);
+                                        <li class="dropdown  d-xl-none d-lg-none d-sm-block d-md-block">
+                                            <a href="#">@user.FirstName @user.LastName</a>
+                                            <ul>
+                                                <li>
+                                                    <a class="dropdown-item" href="/Admin">
+                                                        <p>
+                                                            @Localizer["Adminpanel"]
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="/Profile">
+                                                        <p>@Localizer["Profile"]</p>
+                                                    </a>
+                                                </li>
+                                                <li class="p-1 ">
+                                                    <a href="/logout" class="dropdown-item btn btn-danger text-white bg-danger rounded rounded-0 ">@Localizer["Logout"]</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
+
+                                    <li>
+                                        <a href="/ContactUs">@Localizer["ContactUs"]</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="main-menu__main-menu-box-search-get-quote-btn">
+                                <div class="main-menu__main-menu-box-search">
+
+                                    <a href="#"
+                                       class="main-menu__search search-toggler icon-magnifying-glass" style="margin-left: 3px; margin-right: 3px">
+                                    </a>
+                                    @if (!User.Identity.IsAuthenticated)
+                                    {
+                                        <a href="/accountregister/login">
+                                            <i class="fa fa-sign-in" style="font-size: 25px;margin: 10px; color: black;"></i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+
+                                        var user = await userManager.FindByNameAsync(User.Identity.Name);
+                                        <a class="nav-link dropdown-toggle ml-1 mr-1 mt-1" style="color:black;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            @if (user.ProfilePhotoPath != null)
+                                            {
+                                                <img src="@Url.Content(user.ProfilePhotoPath)" alt="Profile Photo" class="rounded-circle" style="width: 30px; height: 30px; object-fit: cover;" />
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-user-circle-o" style="font-size: 1.5rem;"></i>
+                                            }
+                                        </a>
+                                        <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="border-radius: 10px;">
+                                            <li>
+                                                <div class="pt-2"> <span> @user.FirstName @user.LastName </span></div>
+                                            </li>
+                                            <hr />
+                                            @if (!await userManager.IsInRoleAsync(user, "DistributionUser"))
+                                            {
+                                                <li><a class="btn btn-link text-dark" href="/Admin">@Localizer["Adminpanel"]</a></li>
+                                            }
+                                            <li><a class="btn btn-link text-dark" href="/Profile">@Localizer["Profile"]</a></li>
+
+                                            <li>
+                                                <a href="/logout" class="dropdown-item btn btn-danger text-white bg-danger rounded rounded-0">خروج</a>
+                                            </li>
+                                        </ul>
+                                    }
+                                </div>
+                                <div>
+                                    @* <button style="font-size: 14px; font-weight: 600; color: white; background-color: #6247AA;" class="btn-languge btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @Localizer["Language"]
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-light">
+                                        @if (Model != null)
+                                        {
+                                            @foreach (var item in Model.LanguageQueries)
+                                            {
+                                                @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                                {
+                                                    <li style="text-align: right">
+                                                        <a class="dropdown-item" href="/Index?handler=ChangLanguage&id=@item.Language">@item.LanguageNameShowName</a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <a class="dropdown-item" href="/Index?handler=ChangLanguage&id=@item.Language">@item.LanguageNameShowName</a>
+                                                    </li>
+                                                }
+
+                                            }
+                                        }
+                                    </ul> *@
+                                    @* <form method="get" action="/ChangeLanguage">
+                                        <select name="culture" onchange="this.form.submit()">
+                                            <option value="en-US">English</option>
+                                            <option value="fa-IR">فارسی</option>
+                                            <option value="ru-RU">Русский</option>
+                                        </select>
+                                    </form> *@
+
+                                    <button style="font-size: 14px; font-weight: 600; color: white; background-color: #6247AA;"
+                                            class="btn-languge btn btn-primary dropdown-toggle"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                        @Localizer["Language"]
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-light">
+                                        @if (Model != null)
+                                        {
+                                            @foreach (var item in Model.LanguageQueries)
+                                            {
+                                                <li style="text-align: @(CultureInfo.CurrentCulture.TextInfo.IsRightToLeft ? "right" : "left")">
+                                                    <form method="get" action="/ChangeLanguage">
+                                                        <input type="hidden" name="culture" value="@item.Language" />
+                                                        <button class="dropdown-item" type="submit">@item.LanguageNameShowName</button>
+                                                    </form>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="stricky-header stricked-menu main-menu">
+    <div class="sticky-header__content"></div>
+</div>

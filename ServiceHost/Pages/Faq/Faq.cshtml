@@ -1,0 +1,111 @@
+﻿@page "/FAQ"
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.GeneralSetting
+@inject IViewLocalizer Localizer
+@inject IGeneralSettingQueryModel GeneralSetting
+@model FaqModel
+
+@{
+    var general = GeneralSetting.GeneralSettingQueryModel();
+
+    ViewData["Title"] = Localizer["FAQ"];
+    ViewData["keywords"] = general.MetaKeywords;
+    ViewData["metaDescription"] = general.MetaDescription;
+}
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li><span>/</span></li>
+                <li>
+                    <h6>@Localizer["FAQ"]</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="faq-one">
+    <div class="container">
+        <div class="col-xl-12 col-lg-12" style="text-align: center;">
+            <div class="services-one__top-left">
+                <div class="section-title text-left">
+                    <div class="section-sub-title-box">
+                        <h1 class="section-sub-title">@Localizer["FAQ"]</h1>
+                        @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                        {
+                            <div class="section-title-shape-1">
+                                <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                            </div>
+                            <div class="section-title-shape-2">
+                                <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="section-title-shape-1">
+                                <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                            </div>
+                            <div class="section-title-shape-2">
+                                <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in  Model.Faq)
+            {
+                if (item.Id % 2 == 0)
+                {
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="faq-one__single">
+                            <div class="accrodion-grp faq-one-accrodion" data-grp-name="faq-one-accrodion-2">
+                                <div class="accrodion">
+                                    <div class="accrodion-title">
+                                        <h4><span>?</span>@item.Question</h4>
+                                    </div>
+                                    <div class="accrodion-content">
+                                        <div class="inner">
+                                            <p>
+                                                @item.Answer
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="faq-one__single">
+                            <div class="accrodion-grp faq-one-accrodion" data-grp-name="faq-one-accrodion-2">
+                                <div class="accrodion">
+                                    <div class="accrodion-title">
+                                        <h4><span>?</span>@item.Question</h4>
+                                    </div>
+                                    <div class="accrodion-content">
+                                        <div class="inner">
+                                            <p>
+                                                @item.Answer
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,140 @@
+﻿@model ShopManagement.Application.Contracts.ProductCategory.CreateProductCategory
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ایجاد گروه محصول جدید</h4>
+</div>
+
+<form asp-page="./Index" asp-page-handler="Create"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">نام</label>
+                    <input type="text" class="form-control" asp-for="Name" onchange="makeSlug('Name', 'Slug')">
+                    <span asp-validation-for="Name" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Slug" class="control-label">اسلاگ</label>
+                    <input type="text" class="form-control" asp-for="Slug">
+                    <span asp-validation-for="Slug" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="LanguageId" class="control-label">زبان</label>
+                    <select asp-for="LanguageId" class="form-control" asp-items='new SelectList(Model.ListLanguage, "Id", "LanguageTitle")'>
+                        <option value="0">زبان را انتخاب کنید </option>
+                    </select>
+                    <span asp-validation-for="LanguageId" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group no-margin">
+                    <label asp-for="MetaDescription" class="control-label">توضیحات متا</label>
+                    <textarea class="form-control autogrow" asp-for="MetaDescription"
+                              style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                    <span asp-validation-for="MetaDescription" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="control-label" asp-for="Icon">انتخاب آیکون</label>
+                <input type="file" class="inputFile" asp-for="Icon" accept="image/*">
+                <span asp-validation-for="Icon" class="error"></span>
+            </div>
+            <div class="col-md-8">
+                <div class="divPriw text-center" style="background-color: gray;">
+                    <img  id="preview" src="" alt="پیش‌ نمایش تصویر">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="control-label" asp-for="Picture">انتخاب تصویر</label>
+                <input type="file" class="inputFile1" asp-for="Picture" accept="image/*">
+                <span asp-validation-for="Picture" class="error"></span>
+            </div>
+            <div class="col-md-8">
+                <div class="divPriw text-center">
+                    <img id="preview1" src="" alt="پیش‌ نمایش تصویر">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PictureAlt" class="control-label">آلت تصویر</label>
+                    <input type="text" class="form-control" asp-for="PictureAlt">
+                    <span asp-validation-for="PictureAlt" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PictureTitle" class="control-label">عنوان</label>
+                    <input type="text" class="form-control" asp-for="PictureTitle">
+                    <span asp-validation-for="PictureTitle" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group no-margin">
+                    <label asp-for="Description" class="control-label">توضیحات</label>
+                    <textarea class="form-control autogrow" asp-for="Description" onchange="fillField('Description', 'MetaDescription')"
+                              style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                    <span asp-validation-for="Description" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Keyword" placeholder="لطفا کلمات کلیدی را با ( # ) از هم جدا کنید" class="control-label">کلمات کلیدی</label>
+                    <input type="text" class="form-control" asp-for="Keyword">
+                    <span asp-validation-for="Keyword" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-danger btn-block btn-rounded waves-effect m-b-5" data-dismiss="modal">بستن</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success btn-block btn-rounded waves-effect m-b-5">ایجاد</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@* @section Css *@
+@* { *@
+@*     <link href="~/adminTheme/assets/select2/select2.css" rel="stylesheet" type="text/css" /> *@
+@*     <link href="~/AdminTheme/assets/FileUploader/FileUpload.css" rel="stylesheet" type="text/css" /> *@
+@* } *@
+@* @section Scripts { *@
+@*     <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script> *@
+@*     <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script> *@
+@*     <script src="~/adminTheme/assets/select2/select2.min.js" type="text/javascript"></script> *@
+@*     <script src="~/AdminTheme/assets/FileUploader/FileUpload.js" type="text/javascript"></script> *@
+@*     <script type="text/javascript"> *@
+@*         CKEDITOR.replace('.BodyContent'); *@
+@*         $(document).ready(function () { *@
+@*                 $('#datatable').dataTable(); *@
+@*             }); *@
+@*             jQuery(".select2").select2({ *@
+@*                 width: '100%' *@
+@*             }); *@
+@*      *@
+@*     </script> *@
+@* } *@

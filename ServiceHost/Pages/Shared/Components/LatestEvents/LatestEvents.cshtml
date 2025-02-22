@@ -1,0 +1,110 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_Shop_Framework.Application
+@inject IViewLocalizer Localizer
+@model List<My_ShopQuery.Contract.Events.EventsQueryModel>
+
+
+<section class="news-one ">
+    <div class="container ">
+        <div class="section-title text-center ">
+            <div class="section-sub-title-box ">
+                <p class="section-sub-title ">@Localizer["NEWS"]</p>
+                @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                {
+                    <div class="section-title-shape-1">
+                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                    </div>
+                    <div class="section-title-shape-2">
+                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                    </div>
+                }
+                else
+                {
+                    <div class="section-title-shape-1">
+                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                    </div>
+                    <div class="section-title-shape-2">
+                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row ">
+            <div class="thm-owl__carousel owl-theme owl-carousel news-carousel carousel-dot-style "
+                 data-owl-options='{
+                 "items" : 3,
+                 "margin" : 30,
+                 "smartSpeed" : 900,
+                 "loop" :true,
+                 "autoplay" : 7000,
+                 "nav" :false,
+                 "dots" :true,
+                 "navText" : ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                        "responsive":{
+                            "0":{
+                                "items":1
+                            },
+                            "768":{
+                                "items":1
+                            },
+                            "992":{
+                                "items": 2
+                            }
+                        }
+                    }'>
+
+                @foreach (var item in Model)
+                {
+                    <div class="item">
+                        <div class="news-one__single">
+                            <a href="/EventDetails/@item.Slug" class="news-one__img">
+                                <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle">
+                                <div class="news-one__arrow-box">
+                                    <span class="news-one__arrow">
+                                                <span class="icon-right-arrow1 icon-right-arrow-s"></span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="news-one__content">
+                                <ul class="list-unstyled news-one__meta">
+                                    <li>
+                                        <a href="/EventDetails/@item.Slug">
+                                            <i class="far fa-calendar"></i>
+                                            @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                            {
+                                                @item.PublishDate
+                                            } else
+                                            {
+                                                @item.PublishDate.ToGeorgianDateTime().ToString("yyyy MMMM dd")
+                                            }
+                                        </a>
+                                    </li>
+                                </ul>
+                                <h5 class="news-one__title">
+                                    <a href="/EventDetails/@item.Slug">
+                                        @item.Title
+                                    </a>
+                                </h5>
+                                <hr/>
+                                <div class="news-one__read-more">
+                                    <a href="/EventDetails/@item.Slug">
+                                        @Localizer["More"]
+                                        @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                        {
+                                            <i class="fas fa-angle-double-left"></i>
+                                        } else
+                                        {
+                                            <i class="fa fa-angle-double-right"></i>
+                                        }
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</section>

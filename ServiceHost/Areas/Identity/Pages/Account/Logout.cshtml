@@ -1,0 +1,10 @@
+﻿@page "/logout"
+@using Microsoft.AspNetCore.Mvc.Localization
+@model ServiceHost.Areas.Identity.Pages.Account.LogoutModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["Logout"];
+}
+
+
+<!-- No form or script tag needed -->

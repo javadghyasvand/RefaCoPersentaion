@@ -1,0 +1,15 @@
+D:\Source\RefaCoPersentaion\My_Shop_Framework\bin\Debug\net5.0\My_Shop_Framework.deps.json
+D:\Source\RefaCoPersentaion\My_Shop_Framework\bin\Debug\net5.0\My_Shop_Framework.dll
+D:\Source\RefaCoPersentaion\My_Shop_Framework\bin\Debug\net5.0\My_Shop_Framework.pdb
+D:\Source\RefaCoPersentaion\My_Shop_Framework\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.OAuth.dll
+D:\Source\RefaCoPersentaion\My_Shop_Framework\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.OAuth.xml
+D:\Source\RefaCoPersentaion\My_Shop_Framework\obj\Debug\net5.0\My_Shop_Framework.csproj.AssemblyReference.cache
+D:\Source\RefaCoPersentaion\My_Shop_Framework\obj\Debug\net5.0\My_Shop_Framework.GeneratedMSBuildEditorConfig.editorconfig
+D:\Source\RefaCoPersentaion\My_Shop_Framework\obj\Debug\net5.0\My_Shop_Framework.AssemblyInfoInputs.cache
+D:\Source\RefaCoPersentaion\My_Shop_Framework\obj\Debug\net5.0\My_Shop_Framework.AssemblyInfo.cs
+D:\Source\RefaCoPersentaion\My_Shop_Framework\obj\Debug\net5.0\My_Shop_Framework.csproj.CoreCompileInputs.cache
+D:\Source\RefaCoPersentaion\My_Shop_Framework\obj\Debug\net5.0\My_Shop_.6AF4CDD8.Up2Date
+D:\Source\RefaCoPersentaion\My_Shop_Framework\obj\Debug\net5.0\My_Shop_Framework.dll
+D:\Source\RefaCoPersentaion\My_Shop_Framework\obj\Debug\net5.0\refint\My_Shop_Framework.dll
+D:\Source\RefaCoPersentaion\My_Shop_Framework\obj\Debug\net5.0\My_Shop_Framework.pdb
+D:\Source\RefaCoPersentaion\My_Shop_Framework\obj\Debug\net5.0\ref\My_Shop_Framework.dll

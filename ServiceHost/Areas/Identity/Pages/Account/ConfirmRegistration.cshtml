@@ -1,0 +1,38 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@model ServiceHost.Areas.Identity.Pages.Account.ConfirmRegistrationModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Localizer["ConfirmRegistration"];
+}
+
+
+<div class="panel panel-color panel-primary panel-pages">
+    <div class="panel-heading bg-img">
+        <div class="bg-overlay"></div>
+        <h3 class="text-center m-t-10 text-white">@Localizer["ConfirmRegistration"]</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal m-t-20" method="post" asp-antiforgery="true">
+            <input asp-for="Input.UserName" hidden />
+            <div class="form-floating" style="margin: 5px">
+                <input asp-for="Input.PhoneNumber" class="form-control input-lg" autocomplete="PhoneNumber" aria-required="true" placeholder="@Localizer["Phone"]" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-floating" style="margin: 5px">
+                <input asp-for="Input.Token" class="form-control input-lg" autocomplete="Token" aria-required="true" placeholder="@Localizer["ReceivedToken"]" />
+                <span asp-validation-for="Input.Token" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center m-t-40">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-primary btn-lg w-lg waves-effect waves-light">@Localizer["Confirmation"]</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,86 @@
+﻿@page "/Gallery"
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.GeneralSetting
+@model GalleryModel
+@inject IViewLocalizer Localizer
+@inject IGeneralSettingQueryModel GeneralSetting
+@{
+    var general = GeneralSetting.GeneralSettingQueryModel();
+
+    ViewData["Title"] = Localizer["Gallery"];
+    ViewData["keywords"] = general.MetaKeywords;
+    ViewData["metaDescription"] = general.MetaDescription;
+}
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li><span>/</span></li>
+                <li>
+                    <h6>@Localizer["Gallery"]</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="portfolio">
+    <div class="col-xl-12 col-lg-12" style="text-align: center;">
+        <div class="services-one__top-left">
+            <div class="section-title text-left">
+                <div class="section-sub-title-box">
+                    <h1 class="section-sub-title">@Localizer["Gallery"]</h1>
+                    @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                    {
+                        <div class="section-title-shape-1">
+                            <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                        </div>
+                        <div class="section-title-shape-2">
+                            <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="section-title-shape-1">
+                            <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                        </div>
+                        <div class="section-title-shape-2">
+                            <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container wow fadeInRightBig animated" data-wow-delay="500ms" style="visibility: visible; animation-delay: 500ms; animation-name: fadeInRightBig;">
+        <div class="row filter-layout masonary-layout" style="position: relative; height: 1320px;">
+            @foreach (var item in  Model.Gallery)
+            {
+                <div class="col-xl-4 col-lg-6 col-md-6 filter-item stra busi" style="position: absolute; right: 0px; top: 0px;">
+                    <div class="portfolio__single wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="portfolio__img">
+                            <a href="~/Images/@item.Picture" data-lightbox="gallery" data-title="@item.Title">
+                                <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle">
+                            </a>
+                            <div class="portfolio__content">
+                                <h4 class="portfolio__title">@item.Title</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+@section Css
+{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <link href="~/assets/css/Lightbox.css" rel="stylesheet">
+}
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+}

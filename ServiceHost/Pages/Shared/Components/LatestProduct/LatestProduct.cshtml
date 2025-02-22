@@ -1,0 +1,96 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.Product
+@model List<ProductQueryModel> 
+@inject IViewLocalizer Localizer
+<section class="portfolio-carousel-page">
+    <div class="about-seven__shape-6 float-bob-x">
+        <img src="~/assets/images/shapes/about-seven-shape-6.png" alt="">
+    </div>
+    <div class="about-seven__shape-7">
+        <img src="~/assets/images/shapes/about-seven-shape-7.png" alt="">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12" style="text-align: center;">
+
+                <div class="services-one__top-left">
+                    <div class="section-title text-left">
+                        <div class="section-sub-title-box">
+                            <p class="section-sub-title">@Localizer["OurProduct"]</p>
+                            @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                            {
+                                <div class="section-title-shape-1">
+                                    <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                </div>
+                                <div class="section-title-shape-2">
+                                    <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="section-title-shape-1">
+                                    <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                </div>
+                                <div class="section-title-shape-2">
+                                    <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="thm-owl__carousel owl-theme owl-carousel portfolio-carousel carousel-dot-style"
+                 data-owl-options='{
+                 "items" : 3,
+                 "margin" : 30,
+                 "smartSpeed" : 900,
+                 "loop" :true,
+                 "autoplay" : 7000,
+                 "nav" :false,
+                 "dots" :true,
+                 "navText" : ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                "responsive":{
+                    "0":{
+                        "items":1
+                    },
+                    "768":{
+                        "items":3
+                    },
+                    "992":{
+                        "items": 4
+                    }
+                }
+            }'>
+                @foreach (var item in  Model)
+                {
+
+                    <div class="item">
+
+                        <div class="portfolio__single">
+                            <a  href="/ProductDetails/@item.Slug">
+                                <div class="portfolio__img">
+                                    <a  href="/ProductDetails/@item.Slug">
+                                        <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle">
+                                    </a>
+                                    <div class="portfolio__content">
+                                        <h4 class="portfolio__title">
+                                            <a href="/ProductDetails/@item.Slug">@item.Name</a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="portfolio__content">
+                            <a href="/ProductDetails/@item.Slug">
+                            <h4 class="portfolio__title">
+                                <a href="/ProductDetails/@item.Slug">@item.Name</a>
+                            </h4>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

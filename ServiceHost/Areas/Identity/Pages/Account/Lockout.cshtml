@@ -1,0 +1,16 @@
+﻿@page "/Lockout"
+@using Microsoft.AspNetCore.Mvc.Localization
+@model ServiceHost.Areas.Identity.Pages.Account.LockoutModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Localizer["AccountLocked"];
+}
+
+<div class="wrapper-page">
+    <div class="ex-page-content text-center">
+        <h1 class="title">403!</h1>
+        <h2 class="title alert alert-danger">@Localizer["AccountLocked"]</h2><br>
+        <br>
+        <a class="btn btn-purple btn-block btn-lg waves-effect waves-light" href="/">@Localizer["Back"]</a>
+    </div>
+</div>

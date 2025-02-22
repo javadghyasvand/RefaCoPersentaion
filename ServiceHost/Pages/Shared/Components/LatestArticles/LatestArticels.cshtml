@@ -1,0 +1,80 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_Shop_Framework.Application
+@inject IViewLocalizer Localizer
+
+@model System.Collections.Generic.List<My_ShopQuery.Contract.Article.ArticleQueryModel>
+
+
+<section class="news-two" id="news">
+    <div class="container">
+        <div class="section-title text-center">
+            <div class="section-sub-title-box">
+                <p class="section-sub-title">@Localizer["LatestArticles"]</p>
+                @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                {
+                    <div class="section-title-shape-1">
+                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                    </div>
+                    <div class="section-title-shape-2">
+                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                    </div>
+                }
+                else
+                {
+                    <div class="section-title-shape-1">
+                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                    </div>
+                    <div class="section-title-shape-2">
+                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-4 col-lg-4 wow fadeInUp animated" data-wow-delay="100ms"
+                     style="visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
+                    <a href="/ArticleDetails/@item.Slug" class="news-two__link">
+                        <div class="news-two__single">
+                            <div class="news-two__img">
+                                <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle">
+                                <div class="news-two__arrow-box">
+                                    <span class="news-two__arrow">
+                                        <span class="icon-right-arrow1"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="news-two__content">
+                                <h3 class="news-two__title">
+                                    @item.Title
+                                </h3>
+                                <div class="news-two__client">
+                                    <div class="news-two__client-content">
+                                        <h5>
+                                            @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                            {
+                                                @item.PublishDate
+                                            }
+                                            else
+                                            {
+                                                @item.PublishDate.ToGeorgianDateTime().ToString("yyyy MMMM dd")
+                                            }
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="news-two__tag">
+                                    <p>
+                                        <i class="far fa-folder"></i>@item.CategoryName
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>

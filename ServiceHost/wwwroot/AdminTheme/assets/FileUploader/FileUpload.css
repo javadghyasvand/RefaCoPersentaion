@@ -1,0 +1,38 @@
+﻿
+.fileUploader {
+    background-color: #4A90E2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.fileUploader:hover { background-color: #357ABD; }
+
+#preview {
+    width: auto;
+    max-width: 100%;
+    max-height: 290px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+#preview1 {
+    width: auto;
+    max-width: 100%;
+    max-height: 290px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+.divPriw  {
+    margin-bottom: 30px;
+    text-align: center !important;
+    width: 70%;
+    height: 300px;
+    border: 5px dashed #357ABD;
+    border-radius: 10px;
+}

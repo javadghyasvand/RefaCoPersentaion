@@ -1,0 +1,242 @@
+﻿@page "/ContactUs"
+@model ContactUsModel
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using My_ShopQuery.Contract.GeneralSetting
+@inject IGeneralSettingQueryModel GeneralSetting
+@inject IViewLocalizer Localizer
+@{
+    var general = GeneralSetting.GeneralSettingQueryModel();
+    ViewData["Title"] = Localizer["ContactUs"];
+    ViewData["keywords"] = general.MetaKeywords;
+    ViewData["metaDescription"] = general.MetaDescription;
+}
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li><span>/</span></li>
+                <li>
+                    <h6>@Localizer["ContactUs"]</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="contact-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-lg-5">
+                <div class="contact-page__left">
+                    <div class="section-title text-leftwow fadeInRightBig animated" data-wow-delay="500ms" style="visibility: visible; animation-delay: 100ms; animation-name: fadeInRightBig;">
+                        
+                    </div>
+                    <div class="contact-page__call-email wow fadeInLeftBig animated" data-wow-delay="500ms" style="visibility: visible; animation-delay: 100ms; animation-name: fadeInLeftBig;">
+                        <div class="contact-page__call-email-content">
+                            <h4>
+                                <a style="margin-top: 20px" href="mailto:@Model.GeneralSettingQuery.Email" class="contact-page__email m-2"><i class="fa fa-envelope colors"></i> @Model.GeneralSettingQuery.Email</a>
+                                @{
+                                    var phone = general.PhoneNumbers.Split("#");
+                                    @foreach (var item in  phone)
+                                    {
+                                        @if (!string.IsNullOrWhiteSpace(item))
+                                        {
+                                            <a style="margin-top: 20px" href="tel:@item" class="contact-page__email m-2"><i class="fa fa-phone colors"></i>@item</a>
+                                        }
+                                    }
+                                }
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="section-title text-leftwow fadeInRightBig animated mt-5" data-wow-delay="500ms" style="visibility: visible; animation-delay: 100ms; animation-name: fadeInRightBig;">
+                        <div class="section-sub-title-box">
+                            <h1 class="section-sub-title">@Localizer["Address"]</h1>
+                            @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                            {
+                                <div class="section-title-shape-1">
+                                    <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                </div>
+                                <div class="section-title-shape-2">
+                                    <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="section-title-shape-1">
+                                    <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                </div>
+                                <div class="section-title-shape-2">
+                                    <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="contact-page__call-email wow fadeInLeftBig animated" data-wow-delay="500ms" style="visibility: visible; animation-delay: 100ms; animation-name: fadeInLeftBig;">
+                        <div class="row">
+                            @{
+                                var address = general.Address.Split("#");
+                                foreach (var item in address)
+                                {
+                                    @if (!string.IsNullOrWhiteSpace(item))
+                                    {
+                                        <p style="margin-top: 20px"><i class="fa fa-map-pin colors"></i> @item</p>
+                                    }
+                                }
+                            }
+                          
+                        </div>
+                        <div class="row" style="margin-top: 10px">
+                            @if (!string.IsNullOrWhiteSpace(Model.GeneralSettingQuery.GoogleLink))
+                            {
+                                <div class="col-3">
+                                    <a target="_blank" href="@Model.GeneralSettingQuery.GoogleLink">
+                                        <img width="40" height="40" src="/Images/app-logos/googlemap.png"/>
+                                    </a>
+                                </div>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.GeneralSettingQuery.WaysLink))
+                            {
+                                <div class="col-3">
+                                    <a target="_blank" href="@Model.GeneralSettingQuery.WaysLink">
+                                        <img width="40" height="40" src="/Images/app-logos/wayz-logo.png" />
+                                    </a>
+                                </div>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.GeneralSettingQuery.BaladLink))
+                            {
+                                <div class="col-3">
+                                    <a target="_blank" href="@Model.GeneralSettingQuery.BaladLink">
+                                        <img width="40" height="40" src="/Images/app-logos/balad-logo.png" />
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-7" id="formContact">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div id="successMessage" class="alert alert-success">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div id="errorMessage" class="alert alert-danger">
+                        @TempData["ErrorMessage"]
+                    </div>
+                }
+                <div class="contact-page__right">
+                    <div class="contact-page__form">
+                        <div class="Form-style">
+                            <form method="post" id="contactForm" novalidate="novalidate">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="comment-form__input-box">
+                                            <input type="text" required placeholder="@Localizer["Name"]" name="Name" id="name" minlength="3" maxlength="350">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="comment-form__input-box">
+                                            <input type="email" required placeholder="@Localizer["Email"]" name="Email" id="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="comment-form__input-box">
+                                            <input type="text" required placeholder="@Localizer["Phone"]" name="Phone" id="phone" minlength="10" maxlength="15">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="comment-form__input-box">
+                                            <input type="text" required placeholder="@Localizer["Subject"]" name="subject" id="subject" minlength="5" maxlength="700">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="comment-form__input-box text-message-box">
+                                            <textarea name="Message" placeholder="@Localizer["Message"]" id="message" minlength="10" maxlength="3500" required></textarea>
+                                        </div>
+                                        <div class="comment-form__btn-box">
+                                            <button type="submit" class="thm-btn comment-form__btn">@Localizer["SendMessage"]</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="cta-one cta-three">
+    <div class="container">
+        <div class="cta-one__content">
+            <div class="cta-one__inner">
+                <div class="cta-one__left">
+                    <h3 class="cta-one__title">@Localizer["ContactExpert"]</h3>
+                </div>
+                <div class="cta-one__right">
+                    <div class="cta-one__call">
+                        <div class="cta-one__call-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="cta-one__call-number">
+                            <a href="tel:@phone[0]">@phone[0]</a>
+                            <p>@Localizer["CallExpert"]</p>
+                        </div>
+                    </div>
+                    <div class="cta-one__btn-box">
+                        <a href="#formContact" class="thm-btn cta-one__btn">@Localizer["Quote"]</a>
+                    </div>
+                </div>
+                <div class="cta-one__img">
+                    <img style="width:250px" src="assets/images/AfzarAzma/Banner/portfolio-1-1.jpg" alt="@general.MetaDescription">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="google-map-two">
+    <iframe src="@general.MapLink" class="google-map__two" allowfullscreen></iframe>
+</section>
+
+
+@section Css
+{
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            margin-right: 10px; /* این خط برای راست‌چین بودن اضافه شده */
+            margin-left: 10px; /* این خط برای چپ‌چین بودن اضافه شده */
+            display: block;
+        }
+
+        input.error, select.error, textarea.error {
+            border: 1px solid red !important;
+            background-color: #ffe6e6;
+        }
+
+        .comment-form__input-box {
+            position: relative;
+        }
+
+            .comment-form__input-box .error {
+                margin-top: 5px;
+                margin-bottom: 10px; /* اضافه کردن فاصله پایین برای ارور */
+            }
+
+    </style>
+}
+@section Scripts
+{
+    <script src="~/assets/js/validationcontact.js"></script>
+}

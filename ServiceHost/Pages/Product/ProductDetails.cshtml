@@ -1,0 +1,504 @@
+﻿@page "/ProductDetails/{slug}"
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model ProductDetails
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Model.ProductQueryModel.Name;
+    ViewData["keywords"] = @Model.ProductQueryModel.Keywords;
+    ViewData["metaDescription"] = @Model.ProductQueryModel.MetaDescription;
+}
+
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li>
+                    <span>/</span>
+                </li>
+                <li>
+                    <a href="/CategoryWithProduct/@Model.ProductQueryModel.CategorySlug">@Model.ProductQueryModel.Category</a>
+                </li>
+                <li>
+                    <span>/</span>
+                </li>
+                <li>
+                    <h6>@Model.ProductQueryModel.Name</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="product-details">
+<div class="container">
+    <div class="row">
+        @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+        {
+            <div class="col-lg-6 col-xl-6">
+
+                <div class="col-xl-12 col-lg-12" style="text-align: center;">
+                    <div class="services-one__top-left">
+                        <div class="section-title text-left">
+                            <div class="section-sub-title-box">
+                                <h1 class="section-sub-title">@Model.ProductQueryModel.Name</h1>
+                                @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                {
+                                    <div class="section-title-shape-1">
+                                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                    </div>
+                                    <div class="section-title-shape-2">
+                                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="section-title-shape-1">
+                                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                    </div>
+                                    <div class="section-title-shape-2">
+                                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-details__content">
+                    <p class="product-details__content-text1">
+                        <ul class="product-details__content-Ul" style="padding: 0px 40px;">
+                            @Html.Raw(Model.ProductQueryModel.Description)
+                        </ul>
+                    </p>
+                </div>
+                <div class="product-details__buttons">
+                    <div class="product-details__buttons-1">
+                        <a href="~/Images/@Model.ProductQueryModel.Manual" class="thm-btn">@Localizer["DownloadCatalog"]</a>
+                    </div>
+                </div>
+                <div class="product-details__social">
+                    <div class="title">
+                        <h3>@Localizer["FollowUs"]</h3>
+                    </div>
+                    <div class="product-details__social-link">
+                        @if (Model.SocialMediaQueryModels != null)
+                        {
+                            foreach (var item in Model.SocialMediaQueryModels)
+                            {
+                                <a href="@item.Link" target="_blank">
+                                    <span class="fab fa-@item.Title"></span>
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-6">
+                <div class="product-details__img">
+                    <div class="swiper mySwiper zindex2">
+                        <div class="swiper-wrapper w-75">
+                            @if (Model.ProductQueryModel.Pictures != null && Model.ProductQueryModel.Pictures.Any())
+                            {
+                                @foreach (var item in Model.ProductQueryModel.Pictures)
+                                {
+                                    <div class="swiper-slide text-center">
+                                        <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle" class="img-fluid">
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="swiper-slide w-75">
+                                    <img src="~/Images/@Model.ProductQueryModel.Picture" alt="@Model.ProductQueryModel.PictureAlt" title="@Model.ProductQueryModel.PictureTitle" class="img-fluid">
+                                </div>
+                            }
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-lg-6 col-xl-6">
+                <div class="col-xl-12 col-lg-12" style="text-align: center;">
+                    <div class="services-one__top-left">
+                        <div class="section-title text-left">
+                            <div class="section-sub-title-box">
+                                <h1 class="section-sub-title">@Model.ProductQueryModel.Name</h1>
+                                @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                {
+                                    <div class="section-title-shape-1">
+                                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                    </div>
+                                    <div class="section-title-shape-2">
+                                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="section-title-shape-1">
+                                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                    </div>
+                                    <div class="section-title-shape-2">
+                                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-details__content">
+                    <p class="product-details__content-text1">
+                        <ul class="product-details__content-Ul" style="padding: 0px 40px;">
+                            @Html.Raw(Model.ProductQueryModel.Description)
+                        </ul>
+                    </p>
+                </div>
+                <div class="product-details__buttons">
+                    <div class="product-details__buttons-1">
+                        <a href="~/Images/@Model.ProductQueryModel.Manual" class="thm-btn">@Localizer["DownloadCatalog"]</a>
+                    </div>
+                </div>
+                <div class="product-details__social">
+                    <div class="title">
+                        <h3>@Localizer["FollowUs"]</h3>
+                    </div>
+                    <div class="product-details__social-link">
+                        @if (Model.SocialMediaQueryModels != null)
+                        {
+                            foreach (var item in Model.SocialMediaQueryModels)
+                            {
+                                <a href="@item.Link" target="_blank">
+                                    <span class="fab fa-@item.Title"></span>
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-xl-6">
+                <div class="product-details__img">
+                    <div class="swiper mySwiper zindex2">
+                        <div class="swiper-wrapper w-75">
+                            @if (Model.ProductQueryModel.Pictures != null && Model.ProductQueryModel.Pictures.Any())
+                            {
+                                foreach (var item in Model.ProductQueryModel.Pictures)
+                                {
+                                    <div class="swiper-slide text-center">
+                                        <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle" class="img-fluid">
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="swiper-slide w-75">
+                                    <img src="~/Images/@Model.ProductQueryModel.Picture" alt="@Model.ProductQueryModel.PictureAlt" title="@Model.ProductQueryModel.PictureTitle" class="img-fluid">
+                                </div>
+                            }
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 col-xl-5">
+            <div class="product-details__img">
+                <div class="container">
+                    <h3 class="product-description__title">@Localizer["ProductDescription"]</h3>
+                    <p class="product-description__text1">
+                        @Html.Raw(Model.ProductQueryModel.StarBolt)
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7 col-xl-7">
+            <section class="portfolio-carousel-page1">
+                <h3 class="product-description__title">@Localizer["Productgallery"]</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="thm-owl__carousel owl-theme owl-carousel portfolio-carousel carousel-dot-style"
+                             data-owl-options='{
+                                     "items" : 2,
+                                     "margin" : 30,
+                                     "smartSpeed" : 700,
+                                     "loop" :true,
+                                     "autoplay" : 6000,
+                                     "nav" :false,
+                                     "dots" :true,
+                                     "navText" : ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                        "responsive":{
+                            "0":{
+                                "items":1
+                            },
+                            "768":{
+                                "items":2
+                            },
+                            "992":{
+                                "items": 3
+                            }
+                        }
+                    }'>
+                            @if (Model.ProductQueryModel.Pictures != null && Model.ProductQueryModel.Pictures.Any())
+                            {
+                                @foreach (var item in Model.ProductQueryModel.Pictures)
+                                {
+                                    <div class="item">
+                                        <div class="portfolio__single">
+                                            <div class="portfolio__img1">
+                                                <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle">
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="container" style="text-align: center;">
+    <div class="row" style="margin: 0 30%;">
+        <div class="services-one__top-left">
+            <div class="section-title text-left">
+                <div class="section-sub-title-box" style="margin-top: 40px !important">
+                    <p class="section-sub-title">@Localizer["OurProduct"]</p>
+                    @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                    {
+                        <div class="section-title-shape-1">
+                            <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                        </div>
+                        <div class="section-title-shape-2">
+                            <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="section-title-shape-1">
+                            <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                        </div>
+                        <div class="section-title-shape-2">
+                            <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="team-page-carousel">
+        <div class="container">
+            <div class="thm-owl__carousel owl-theme owl-carousel team-carousel carousel-dot-style" data-owl-options='{
+                     "items" : 4,
+                     "margin" : 108,
+                     "smartSpeed" : 700,
+                     "loop" :false,
+                     "autoplay" : 6000,
+                     "nav" :false,
+                     "dots" :true,
+                     "navText" : ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                    "responsive":{
+                        "0":{
+                            "items":1
+                        },
+                        "768":{
+                            "items":3
+                        },
+                        "992":{
+                            "items": 4
+                        }
+                    }
+                }'>
+                @if (Model.ProductQueryModel.ProductList != null)
+                {
+                    @foreach (var item in Model.ProductQueryModel.ProductList)
+                    {
+                        <div class="item">
+                            <a href="/ProductDetails/@item.Slug">
+                                <div class="team-one__single">
+                                    <div class="team-one__img">
+                                        <div class="team-one__img-box">
+                                            <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle">
+                                        </div>
+                                    </div>
+                                    <div class="team-one__content">
+                                        <h3 class="team-one__name">
+                                            <a href="/ProductDetails/@item.Slug"> @item.Name</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+</div>
+
+@if (Model.ProductQueryModel.CommentActive)
+{
+    <section class="review-one">
+        <div class="container">
+
+            <div class="comment-one">
+                <h3 class="comment-one__title">
+                    @Model.ProductQueryModel.Comments.Count
+                    @Localizer["Comment"]
+                </h3>
+                @foreach (var item in Model.ProductQueryModel.Comments)
+                {
+                    <div class="comment-one__single">
+                        <div class="comment-one__image">
+                            <img src="~/assets/images/AfzarAzma/NoImageUser/2024-10-17_17-03-18.jpg" alt="">
+                        </div>
+                        <div class="comment-one__content">
+                            <h3>@item.Name</h3>
+                            <p>@item.Message</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <section class="review-form-one">
+        <div class="container">
+            <div class="review-form-one__inner">
+                <h3 class="review-form-one__title">@Localizer["AddComment"]</h3>
+                <form method="post" class="review-form-one__form comment-in__form contact-form-validated" novalidate="novalidate">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="review-form-one__input-box text-message-box">
+                                <textarea name="Message" placeholder="@Localizer["WriteComment"]"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="review-form-one__input-box">
+                                <input type="text" placeholder="@Localizer["FullName"]" name="Name">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="review-form-one__input-box">
+                                <input type="email" placeholder="@Localizer["Email"]" name="Email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="OwnerId" value="@Model.ProductQueryModel.Id"/>
+                    <input type="hidden" name="productSlug" value="@Model.ProductQueryModel.Slug"/>
+                    <input type="hidden" name="ParentId" id="commentParentId" value=""/>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <button type="submit" class="thm-btn review-form-one__btn">@Localizer["Send"]</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+}
+</section>
+
+@section Css
+{
+    <style>
+        .swiper { --swiper-navigation-size: 20px; }
+
+        /* تغییر رنگ دکمه‌ها */
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #7F6B99;
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 2px solid #7F6B99;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        /* تغییرات در حالت hover */
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background-color: #7F6B99;
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+            transform: scale(1.1);
+        }
+
+        /* موقعیت پیش‌فرض دکمه‌ها */
+
+        .swiper-button-next { right: 10px; }
+
+        .swiper-button-prev { left: 10px; }
+
+        /* تغییر رنگ نقاط صفحه‌بندی */
+
+        .swiper-pagination-bullet {
+            background-color: #7F6B99;
+            opacity: 0.5;
+            width: 10px;
+            height: 10px;
+        }
+
+        /* تغییر رنگ نقطه فعال */
+
+        .swiper-pagination-bullet-active {
+            background-color: #7F6B99;
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* افکت هاور روی نقاط */
+
+        .swiper-pagination-bullet:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+    </style>
+
+}
+
+@section Scripts
+{
+    <script>
+        document.addEventListener('DOMContentLoaded',
+            function() {
+                const swiper = new Swiper('.mySwiper',
+                    {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                        loop: true, // برای چرخش تصاویر
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                    });
+            });
+    </script>
+}

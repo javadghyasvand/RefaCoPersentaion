@@ -1,0 +1,17 @@
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\bin\Debug\net5.0\ShopManagement.Application.Contracts.deps.json
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\bin\Debug\net5.0\ShopManagement.Application.Contracts.dll
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\bin\Debug\net5.0\ShopManagement.Application.Contracts.pdb
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\bin\Debug\net5.0\LanguageManagement.Application.Contracts.dll
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\bin\Debug\net5.0\My_Shop_Framework.dll
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\bin\Debug\net5.0\LanguageManagement.Application.Contracts.pdb
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\bin\Debug\net5.0\My_Shop_Framework.pdb
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\obj\Debug\net5.0\ShopManagement.Application.Contracts.csproj.AssemblyReference.cache
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\obj\Debug\net5.0\ShopManagement.Application.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\obj\Debug\net5.0\ShopManagement.Application.Contracts.AssemblyInfoInputs.cache
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\obj\Debug\net5.0\ShopManagement.Application.Contracts.AssemblyInfo.cs
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\obj\Debug\net5.0\ShopManagement.Application.Contracts.csproj.CoreCompileInputs.cache
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\obj\Debug\net5.0\ShopMana.6F35FA60.Up2Date
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\obj\Debug\net5.0\ShopManagement.Application.Contracts.dll
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\obj\Debug\net5.0\refint\ShopManagement.Application.Contracts.dll
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\obj\Debug\net5.0\ShopManagement.Application.Contracts.pdb
+D:\Source\RefaCoPersentaion\ShopManagement.Application.Contracts\obj\Debug\net5.0\ref\ShopManagement.Application.Contracts.dll

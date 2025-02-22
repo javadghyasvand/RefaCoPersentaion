@@ -1,0 +1,66 @@
+﻿@page
+@inject IViewLocalizer Localizer
+@using Microsoft.AspNetCore.Mvc.Localization
+@model ServiceHost.Areas.Identity.Pages.Account.VerifyLoginCodeModel
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+
+<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+<div class="panel panel-color panel-primary panel-pages">
+    <div class="panel-heading bg-img">
+        <div class="bg-overlay"></div>
+        <h3 class="text-center m-t-10 text-white">@ViewData["Title"]</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal m-t-20" method="post" asp-antiforgery="true">
+            <div class="form-floating" style="margin: 5px">
+                <input asp-for="Input.PhoneNumber" class="form-control input-lg"  autocomplete="PhoneNumber" aria-required="true" placeholder="@Localizer["MobileNumber"]" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-floating" style="margin: 5px">
+                <input asp-for="Input.Token" class="form-control input-lg" autocomplete="PhoneNumber" aria-required="true" placeholder="@Localizer["Title"]" />
+                <span asp-validation-for="Input.Token" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center m-t-40">
+                <div class="col-xs-12">
+                    <button class="btn btn-primary btn-lg w-lg waves-effect waves-light" type="submit">@Localizer["confirmation"]</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+@section Css
+{
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            margin-right: 10px; /* این خط برای راست‌چین بودن اضافه شده */
+            margin-left: 10px; /* این خط برای چپ‌چین بودن اضافه شده */
+            display: block;
+        }
+
+        input.error, select.error, textarea.error {
+            border: 1px solid red !important;
+            background-color: #ffe6e6;
+        }
+
+        .comment-form__input-box {
+            position: relative;
+        }
+
+        .comment-form__input-box .error {
+            margin-top: 5px;
+            margin-bottom: 10px; /* اضافه کردن فاصله پایین برای ارور */
+        }
+
+    </style>
+}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

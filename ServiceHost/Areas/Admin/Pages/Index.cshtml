@@ -1,0 +1,43 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@model ServiceHost.Areas.Admin.Pages.IndexModel
+@attribute [Authorize(Policy = "SuperAdmin")]
+@{
+    ViewData["Title"] = "صفحه اصلی";
+}
+<div class="row" id="ProductCategoriesDiv">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body" style="background-color: #E0DAED">
+                <div>
+                    <div class="text-center">
+                        <img style="min-width: 100px; width: 20%;" src="~/Images/@Model.SiteLogo.Picture"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* @await Component.InvokeAsync("Comments") *@
+
+
+@section Css
+{
+    <link href="~/AdminTheme/assets/select2/select2.css" rel="stylesheet" type="text/css" />
+    <link href="~/AdminTheme/assets/FileUploader/FileUpload.css" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts {
+    <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
+    <script src="~/AdminTheme/assets/select2/select2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable();
+        });
+        jQuery(".select2").select2({
+            width: '200px'
+        });
+
+    </script>
+}

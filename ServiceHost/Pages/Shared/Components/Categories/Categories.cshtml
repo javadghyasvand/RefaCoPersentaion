@@ -1,0 +1,78 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model List<My_ShopQuery.Contract.ProductCategory.ProductCategoryQueryModel>
+@inject IViewLocalizer Localizer
+
+<section class="testimonial-one">
+    <div class="testimonial-one-shape-2 float-bob-y">
+        <img src="assets/images/AfzarAzma/Shape/003.png" alt="">
+    </div>
+
+    <div class="testimonial-one-shape-3 float-bob-y">
+        <img src="assets/images/AfzarAzma/Shape/004.png" alt="">
+    </div>
+    
+    <div class="container">
+        <div class="center">
+            <div class="section-sub-title-box mb-5">
+                <p class="section-sub-title">@Localizer["Products"]</p>
+                @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                {
+                    <div class="section-title-shape-1">
+                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                    </div>
+                    <div class="section-title-shape-2">
+                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                    </div>
+                }
+                else
+                {
+                    <div class="section-title-shape-1">
+                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                    </div>
+                    <div class="section-title-shape-2">
+                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                    </div>
+                }
+
+            </div>
+        </div>
+
+        <section class="feature-two">
+            <div class="container">
+                <div class="row">
+                    @foreach (var item  in  Model)
+                    {
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInLeftBig animated animated" data-wow-delay="400ms"
+                             style="visibility: visible; animation-delay: 100ms; animation-name: fadeInLeftBig;">
+                            <a href="/CategoryWithProduct/@item.Slug">
+                                <div class="feature-two__single">
+                                    <div class="feature-two__img   feature-two__img-Black">
+                                        @* <div class="testimonial-one-shape-category float-bob-y"> *@
+                                        @*     <img src="assets/images/AfzarAzma/Shape/001.png" alt=""> *@
+                                        @* </div> *@
+                                        <img src="~/Images/@item.Picture" alt="@item.PictureAlt" title="@item.PictureTitle">
+                                    </div>
+                                    <div class="feature-two__content feature-two__content_BorderRemove">
+                                        <div class="feature-two__content-inner">
+                                            <div class="feature-two__icon">
+                                                <span>
+                                                    <img src="~/images/@item.Icon" alt="@item.PictureAlt" title="@item.PictureTitle">
+                                                </span>
+                                            </div>
+                                            <div class="feature-two__text-box">
+                                                <h2 class="feature-two__text">
+                                                    <a href="/CategoryWithProduct/@item.Slug">@item.Name</a>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

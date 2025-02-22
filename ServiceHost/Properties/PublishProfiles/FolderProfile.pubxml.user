@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Source\Afzarazmapublish</_PublishTargetUrl>
+    <History>True|2025-02-19T10:53:22.3080529Z||;True|2025-02-18T23:38:56.1605969+03:30||;True|2025-01-20T12:30:24.3875012+03:30||;True|2025-01-17T22:29:20.7987583+03:30||;True|2025-01-15T17:29:14.6784327+03:30||;True|2025-01-15T16:39:32.1048788+03:30||;True|2025-01-15T15:06:52.5875047+03:30||;True|2025-01-04T18:08:02.8184248+03:30||;True|2025-01-04T17:48:57.5337409+03:30||;True|2024-12-23T14:55:38.2472989+03:30||;True|2024-12-19T17:45:35.7728008+03:30||;True|2024-12-16T14:59:18.7187935+03:30||;True|2024-12-16T12:42:37.0397634+03:30||;True|2024-12-16T10:54:46.9760695+03:30||;True|2024-12-16T10:53:09.5992483+03:30||;True|2024-12-16T01:03:18.2722416+03:30||;True|2024-12-16T00:09:22.5884411+03:30||;True|2024-12-15T22:25:05.8767083+03:30||;True|2024-12-15T21:52:26.0338889+03:30||;True|2024-12-15T17:44:44.4660975+03:30||;True|2024-12-15T10:20:37.5940907+03:30||;True|2024-12-14T23:51:03.1231546+03:30||;True|2024-12-14T18:31:33.1840335+03:30||;True|2024-12-14T18:25:34.2171989+03:30||;True|2024-12-14T17:55:09.8188119+03:30||;True|2024-12-14T17:37:11.2112890+03:30||;True|2024-12-14T17:35:40.0361893+03:30||;False|2024-12-14T17:31:35.0247095+03:30||;False|2024-12-14T17:28:53.1393379+03:30||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="wwwroot/Images/About/afzar-azma/4/2024-10-12-13-40-06-2024-10-12_12-55-05.jpg">
+      <publishTime>10/12/2024 13:40:06</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/afzar-azma/4/2024-10-12-13-40-06-Afzar Azma-7 low size.mp4">
+      <publishTime>10/12/2024 13:40:06</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/afzar-azma/4/df9fc3e1-900c-4c52-8de2-877d4eee4441.jpg">
+      <publishTime>10/19/2024 00:12:43</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/afzar-azma/4/ef6b6b00-cead-427c-bb84-90321f929fa4.mp4">
+      <publishTime>10/19/2024 00:12:43</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/electronic-afzar-azma-eaa/4/60f85369-4fc3-4955-b4c4-327b96de214b.mp4">
+      <publishTime>12/08/2024 17:34:25</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/electronic-afzar-azma-eaa/4/dd5897d4-d5fe-4f70-9374-fec14890b9d2.jpg">
+      <publishTime>12/09/2024 02:17:32</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/электронная-афзар-азма-еаа/5/1360cedf-e5da-4210-87b1-556634578840.jpg">
+      <publishTime>12/08/2024 17:30:01</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/электронная-афзар-азма-еаа/5/8bd1cef3-cc2a-415d-b786-b6c71583a768.mp4">
+      <publishTime>12/08/2024 17:30:01</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/أذر-عظمة-الإلكترونية-eaa/8/37c4f73f-8572-4b50-9c8d-3176508877df.jpg">
+      <publishTime>12/08/2024 17:32:32</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/أذر-عظمة-الإلكترونية-eaa/8/c4111113-7e0f-4503-b03b-aa12b9507c19.mp4">
+      <publishTime>12/08/2024 17:32:32</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/شرکت-الکترونیک-افزار-آزما/1/473cd738-0a6c-475c-b136-1d24770f0736.jpg">
+      <publishTime>12/09/2024 02:17:45</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/شرکت-الکترونیک-افزار-آزما/1/8029cb36-508f-470a-93de-455257090833.jpg">
+      <publishTime>10/19/2024 00:12:16</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/شرکت-الکترونیک-افزار-آزما/1/a98f1ace-cbd2-4987-8531-8edcbd889d4f.mp4">
+      <publishTime>10/19/2024 00:12:16</publishTime>
+    </File>
+    <File Include="wwwroot/Images/About/شرکت-الکترونیک-افزار-آزما/1/d8c83d31-34a2-4996-82f2-8b94cf55ad57.mp4">
+      <publishTime>12/08/2024 17:36:03</publishTime>
+    </File>
+    <File Include="wwwroot/Images/app-logos/balad-logo.png">
+      <publishTime>12/11/2024 14:15:52</publishTime>
+    </File>
+    <File Include="wwwroot/Images/app-logos/googlemap.png">
+      <publishTime>12/14/2024 08:29:52</publishTime>
+    </File>
+    <File Include="wwwroot/Images/app-logos/wayz-logo.png">
+      <publishTime>12/11/2024 14:17:53</publishTime>
+    </File>
+    <File Include="wwwroot/Images/Articles/meter/a-way-to-help-solve-the-imbalance-problem/fa0495f0-9f18-4ccc-9a9c-e49ec2038599.jpg">
+      <publishTime>12/12/2024 02:58:56</publishTime>
+    </File>
+    <File Include="wwwroot/Images/Articles/meter/a-win-win-agreement/92aa0799-4893-4b10-b47f-d36b7a8bee5d.webp">
+      <publishTime>12/12/2024 05:21:26</publishTime>
+    </File>
+    <File Include="wwwroot/Images/Articles/meter/a-win-win-win-agreement/2f30b9a9-06c6-4b31-943f-07518aa15df8.webp">
+      <publishTime>11/20/2024 05:55:00</publishTime>
+    </File>
+    <File Include="wwwroot/Images/Articles/meter/economic-smart-metering-innovations-by-the-design-and-development-team-at-electronics-afzar-azma/0140ce27-9aa9-462c-86ce-3f856527f194.jpg">
+      <publishTime>11/20/2024 06:07:00</publishTime>
+    </File>
+    <File Include="wwwroot/Images/Articles/meter/economic-smart-metering-innovations-by-the-design-and-development-team-at-electronics-afzar-azma/2e984515-1d1a-4a4b-894a-def4a1bf59d0.png">
+      <publishTime>12/12/2024 06:26:03</publishTime>
+    </File>
+    <File Include="wwwroot/Images/Articles/meter/economic-smart-metering-innovations-by-the-design-and-development-team-at-electronics-afzar-azma/35ff8cd3-4ef7-461d-b6ac-ead6b322f26c.png">
+      <publishTime>12/12/2024 06:23:35</publishTime>
+    </File>
+    <File Include="wwwroot/Images/Articles/meter/economic-smart-metering-innovations-by-the-design-and-development-team-at-electronics-afzar-azma/9253b3cd-2a99-44ba-8cd3-1c29e4a23704.jpg">
+      <publishTime>12/12/2024 05:35:52</publishTime>
+    </File>
+    <File Include="wwwroot/Images/Articles/meter/economic-smart-metering-innovations-by-the-design-and-development-team-at-electronics-afzar-azma/f2daa215-1d11-49e7-99f1-c2c1ef7eddc1.jpg">
+      <publishTime>11/20/2024 06:00:00</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

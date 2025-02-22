@@ -1,0 +1,202 @@
+﻿.slider-container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: inherit;
+    z-index: 1;
+}
+.slider-h1 {
+    font-size: 30px !important;
+    color: white !important;
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+}   
+.video-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: unset;
+    z-index: -1;
+    object-fit: cover;
+}
+.swiper-container {
+    position: relative;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    width: 50%;
+    margin-top: 13%;
+    z-index: 3;
+}
+
+    .swiper-slide {
+        color: white;
+        text-align: center;
+        font-size: 24px;
+        opacity: 0; /* Hidden by default */
+        transition: opacity 0.5s ease; /* Smooth fade transition */
+    }
+
+.swiper-slide-active {
+    opacity: 1; /* Visible when active */
+}
+
+.swiper-slide button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: white solid 2px;
+    border-radius: 7px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.swiper-slide h2{
+    font-size:30px;
+    color:white;
+}
+.swiper-Brand {
+    font-size: 30px !important;
+    color: white !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+@media (max-width: 1024px) {
+    .video-background {
+        position: absolute;
+        top: 0;
+        right: -18%;
+        width: 121%;
+        height: 70vh;
+        z-index: -1;
+        object-fit: fill;
+    }
+
+    .swiper-slide h2 {
+        font-size: 20px;
+        color: white;
+    }
+
+    .slider-container {
+        width: 100%;
+        height: 50vh;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 767px) {
+    .video-background {
+        position: absolute;
+        top: 0;
+        right: -123%;
+        width: 244%;
+        height: 76vh;
+        z-index: -1;
+        object-fit: fill;
+    }
+    .swiper-slide h2 {
+        font-size: 18px;
+        color: white;
+    }
+    .slider-container {
+        width: 100%;
+        height: 60vh;
+        overflow: hidden;
+    }
+    .swiper-container {
+        position: relative;
+        width: 90%;
+        margin-top: 30%;
+        z-index: 3;
+    }
+}
+.news-one__title {
+    min-height: 150px
+}
+.testimonial-one__shape-1 {
+    z-index: -1;
+}
+
+.news-one__text {
+    min-height: 100px
+}
+.CustomSelect {
+    border-radius: 10px;
+    border-radius: 10px;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    outline: none !important;
+    border: none;
+    font-size: 14px;
+    background-color: var(--insur-extra) !important;
+    color: var(--insur-gray);
+    height: 60px;
+}
+
+.CustomSelect:focus {
+    outline: none;
+}
+
+
+.comment-form__input-box input[type="text"], .comment-form__input-box input[type="email"], .comment-form__input-box input[type="tel"] {
+    height: 60px;
+    width: 100%;
+    border: none;
+    background-color: var(--insur-extra);
+    padding-left: 30px;
+    padding-right: 30px;
+    outline: none;
+    font-size: 14px;
+    color: var(--insur-gray);
+    display: block;
+    border-radius: var(--insur-bdr-radius);
+    font-weight: 500;
+    letter-spacing: var(--insur-letter-spacing);
+    text-align: right !important;
+}
+
+.Waranty-in__form {
+    position: relative;
+    display: block;
+    padding: 30px 10px 30px;
+    border-radius: var(--insur-bdr-radius);
+    border: 1px solid var(--insur-bdr-color);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.05);
+}
+
+/* Profile
+-------------------------------------------------- */
+.profile__pic {
+    background-color: white;
+    border-radius: 50%;
+    margin-left: 1rem !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+    .profile__pic i {
+        font-size: 20px;
+        padding: 9px 11px;
+    }
+
+.profile__list{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 8px 16px;
+    margin: 15px 0;
+}
+
+@media (max-width: 768px) { 
+    .smChoice{
+        padding: 15px 0 !important;
+    }
+    .smodometer {
+        font-size: 1.1rem;
+        padding: 0 4px;
+    }
+   /* * {
+        font-size: 0.8rem !important;
+    }*/
+}

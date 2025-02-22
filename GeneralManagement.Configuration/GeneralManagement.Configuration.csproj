@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+    <ProjectReference Include="..\GeneralManagement.Application\GeneralManagement.Application.csproj" />
+    <ProjectReference Include="..\GeneralManagement.Domain\GeneralManagement.Domain.csproj" />
+    <ProjectReference Include="..\GeneralManagement.Infrastructure.EFCore\GeneralManagement.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\My_ShopQuery\My_ShopQuery.csproj" />
+  </ItemGroup>
+
+</Project>

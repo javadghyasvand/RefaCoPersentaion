@@ -1,0 +1,28 @@
+{
+  "profiles": {
+    "ServiceHost": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:3150;http://localhost:3151"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "ASPNETCORE_ENVIRONMENT": "Development",
+      "applicationUrl": "http://localhost:9606/",
+      "sslPort": 44369
+    }
+  }
+}

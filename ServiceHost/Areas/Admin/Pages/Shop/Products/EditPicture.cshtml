@@ -1,0 +1,55 @@
+﻿@model ShopManagement.Application.Contracts.ProductPicture.EditProductPicture
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ویرایش عکس برای محصول :@Model.ProductName</h4>
+</div>
+
+<form asp-page="./ProductGallery" asp-page-handler="EditPicture"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-3">
+                <label class="control-label" asp-for="Picture">انتخاب تصویر</label>
+                <input type="file" class="inputFile form-control" asp-for="Picture" accept="image/*">
+            </div>
+            <div class="col-md-8">
+                <div class="divPriw text-center">
+                    <img id="preview" src="~/Images/@Model.PictureString" alt="پیش‌ نمایش تصویر">
+                </div>
+            </div>
+            <span asp-validation-for="Picture" class="error"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PictureTitle" class="control-label">عنوان تصویر</label>
+                    <input type="text" class="form-control" asp-for="PictureTitle">
+                    <span asp-validation-for="PictureTitle" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="PictureAlt" class="control-label">آلت تصویر</label>
+                    <input type="text" class="form-control" asp-for="PictureAlt">
+                    <span asp-validation-for="PictureAlt" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" asp-for="ProductId" value="@Model.ProductId"/>
+        <input type="hidden" asp-for="Id" value="@Model.Id"/>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-danger btn-block btn-rounded waves-effect m-b-5" data-dismiss="modal">بستن</button>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success btn-block btn-rounded waves-effect m-b-5">ویرایش</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,64 @@
+﻿@model LanguageManagement.Application.Contracts.Language.EditLanguage
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">ویرایش زبان : @Model.LanguageTitle</h4>
+</div>
+<form asp-page="./Index" asp-page-handler="Edit"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="LanguageTitle" class="control-label"> نام زبان</label>
+                    <input type="text" class="form-control" asp-for="LanguageTitle">
+                    <span asp-validation-for="LanguageTitle" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="LanguageNameFa" class="control-label"> نام فارسی</label>
+                    <input type="text" class="form-control" asp-for="LanguageNameFa">
+                    <span asp-validation-for="LanguageNameFa" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="LanguageNameEn" class="control-label"> نام انگلیسی</label>
+                    <input type="text" class="form-control" asp-for="LanguageNameEn">
+                    <span asp-validation-for="LanguageNameEn" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="LanguageNameRu" class="control-label"> نام روسی</label>
+                    <input type="text" class="form-control" asp-for="LanguageNameRu">
+                    <span asp-validation-for="LanguageNameRu" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="LanguageNameAr" class="control-label"> نام عربی</label>
+                    <input type="text" class="form-control" asp-for="LanguageNameAr">
+                    <span asp-validation-for="LanguageNameAr" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" asp-for="Id" value="@Model.Id"/>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-danger btn-block btn-rounded waves-effect m-b-5" data-dismiss="modal">بستن</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success btn-block btn-rounded waves-effect m-b-5">ویرایش</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

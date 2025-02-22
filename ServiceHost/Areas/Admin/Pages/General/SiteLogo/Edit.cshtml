@@ -1,0 +1,113 @@
+﻿@page
+@model ServiceHost.Areas.Admin.Pages.General.SiteLogo.EditModel
+@{
+    Layout = "Shared/_AdminLayout";
+    ViewData["title"] = "ویرایش لوگو";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">ویرایش لوگو </h3>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.Message))
+            {
+                <div class="alert alert-danger">@Model.Message</div>
+            }
+            <div class="panel-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Command.Title" class="control-label">عنوان</label>
+                                    <input type="text" class="form-control" asp-for="Command.Title">
+                                    <span asp-validation-for="Command.Title" class="error"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Command.LanguageId">زبان</label>
+                                    <select asp-for="Command.LanguageId" asp-items="Model.ListLanguage" class="select2">
+                                        <option value="0">انتخاب زبان</option>
+                                    </select>
+                                    <span asp-validation-for="Command.LanguageId" class="error"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="file" class="inputFile" asp-for="Command.Picture" accept="image/*">
+                            <span asp-validation-for="Command.Picture" class="error"></span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="divPriw text-center">
+                                <img id="preview" src="~/Images/@Model.Command.PictureString" alt="پیش‌ نمایش تصویر">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.PictureAlt" class="control-label">آلت تصویر</label>
+                                <input type="text" class="form-control" asp-for="Command.PictureAlt">
+                                <span asp-validation-for="Command.PictureAlt" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.PictureTitle" class="control-label">آلت تصویر</label>
+                                <input type="text" class="form-control" asp-for="Command.PictureTitle">
+                                <span asp-validation-for="Command.PictureTitle" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group no-margin">
+                                <label asp-for="Command.Link" class="control-label">لینک </label>
+                                <input class="form-control " asp-for="Command.Link" dir="ltr"></input>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" value="@Model.Command.Id" asp-for="Command.Id"/>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a asp-page="./Index" class="btn btn-danger btn-block btn-rounded waves-effect m-b-5">بازگشت</a>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-success btn-block btn-rounded waves-effect m-b-5">ویرایش</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Css
+{
+    <link href="~/AdminTheme/assets/select2/select2.css" rel="stylesheet" type="text/css"/>
+    <link href="~/AdminTheme/assets/FileUploader/FileUpload.css" rel="stylesheet" type="text/css"/>
+}
+
+@section Scripts {
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
+    <script src="~/AdminTheme/assets/select2/select2.min.js" type="text/javascript"></script>
+    <script src="~/AdminTheme/assets/FileUploader/FileUpload.js" type="text/javascript"></script>
+    <script type="text/javascript">
+         $(document).ready(function () {
+            $('.persianDateInput').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true
+            });
+         });
+        jQuery(".select2").select2({
+            width: '100%'
+        });
+    </script>
+}

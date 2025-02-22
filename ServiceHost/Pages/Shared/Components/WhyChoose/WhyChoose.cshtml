@@ -1,0 +1,194 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model List<My_ShopQuery.Contract.Certificate.CertificateQueryModel>
+@inject IViewLocalizer Localizer
+<section class="counter-one">
+    <div class="counter-one-shape-1 float-bob-y">
+        <img src="assets/images/shapes/counter-one-shape-1.png" alt="">
+    </div>
+    <div class="counter-one-shape-2 float-bob-y">
+        <img src="assets/images/shapes/counter-one-shape-2.png" alt="">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="services-two__top-left">
+                    <div class="section-title text-center">
+                        <div style="text-align: center;">
+                            <div class="section-sub-title-box">
+                                <p class="section-sub-title mb-5 ">@Localizer["Why"]</p>
+                                @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+                                {
+                                    <div class="section-title-shape-1">
+                                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                    </div>
+                                    <div class="section-title-shape-2">
+                                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="section-title-shape-1">
+                                        <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                                    </div>
+                                    <div class="section-title-shape-2">
+                                        <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="smChoice choiceus col-lg-4 col-md-12 col-sm-12 p-5 wow fadeInUp animated " dir="ltr" data-wow-delay="500ms"
+                 style="visibility: visible; animation-delay: 500ms; animation-name: fadeInUp;">
+                <div class=" counter-one__single">
+                    <div class="counter-one__top">
+                        <div class="counter-one__count-box">
+                            <div class="counter-one__count-box-inner">
+                                <h3 class="smodometer odometer odometer-auto-theme" data-count="6000000">
+                                    <div class="odometer-inside">
+                                        <span class="odometer-digit">
+                                            <span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner">
+                                                <span class="odometer-ribbon">
+                                                    <span class="odometer-ribbon-inner">
+                                                        <span class="odometer-value">2</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="odometer-formatting-mark odometer-radix-mark">.</span><span class="odometer-digit">
+                                            <span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner">
+                                                <span class="odometer-ribbon">
+                                                    <span class="odometer-ribbon-inner">
+                                                        <span class="odometer-value">6</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </h3>
+
+                            </div>
+                        </div>
+                    </div>
+                    <p class="counter-one__text">@Localizer["Capacity"]</p>
+                </div>
+            </div>
+            <div class="smChoice choiceus col-lg-4 col-md-12 col-sm-12 p-5 wow fadeInUp animated " dir="ltr" data-wow-delay="500ms"
+                 style="visibility: visible; animation-delay: 500ms; animation-name: fadeInUp;">
+                <div class=" counter-one__single">
+                    <div class="counter-one__top">
+                        <div class="counter-one__count-box">
+                            <div class="counter-one__count-box-inner">
+                                <h3 class="smodometer odometer odometer-auto-theme" data-count="16850400">
+                                    <div class="odometer-inside">
+                                        <span class="odometer-digit">
+                                            <span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner">
+                                                <span class="odometer-ribbon">
+                                                    <span class="odometer-ribbon-inner">
+                                                        <span class="odometer-value">2</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span><span class="odometer-formatting-mark odometer-radix-mark">.</span><span class="odometer-digit">
+                                            <span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner">
+                                                <span class="odometer-ribbon">
+                                                    <span class="odometer-ribbon-inner">
+                                                        <span class="odometer-value">6</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </h3>
+
+                            </div>
+                        </div>
+                    </div>
+                    <p class="counter-one__text"> @Localizer["Install"]</p>
+                </div>
+            </div>
+
+            <div class="choiceus col-lg-4 col-md-12 col-sm-12 p-5 wow fadeInUp animated" dir="ltr" data-wow-delay="500ms"
+                 style="visibility: visible; animation-delay: 500ms; animation-name: fadeInUp;">
+                <div class=" counter-one__single">
+                    <div class="counter-one__top">
+                        <div class="counter-one__count-box">
+                            <div class="counter-one__count-box-inner">
+                                <span class="counter-one__plus">%</span>
+                                <h3 class="odometer odometer-auto-theme" data-count="100">
+                                    <div class="odometer-inside">
+                                        <span class="odometer-digit">
+                                            <span class="odometer-digit-spacer">0</span>
+                                            <span class="odometer-digit-inner">
+                                                <span class="odometer-ribbon">
+                                                    <span class="odometer-ribbon-inner">
+                                                        <span class="odometer-value">0</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
+
+                                        <span class="odometer-digit">
+                                            <span class="odometer-digit-spacer">1</span>
+                                            <span class="odometer-digit-inner">
+                                                <span class="odometer-ribbon">
+                                                    <span class="odometer-ribbon-inner">
+                                                        <span class="odometer-value">1</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="odometer-digit">
+                                            <span class="odometer-digit-spacer">0</span>
+                                            <span class="odometer-digit-inner">
+                                                <span class="odometer-ribbon">
+                                                    <span class="odometer-ribbon-inner">
+                                                        <span class="odometer-value">0</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="counter-one__text">@Localizer["Export"] </p>
+                </div>
+            </div>
+            <div class="text-center wow animated animated" data-wow-delay="400ms"
+                 style="visibility: visible; animation-delay: 500ms; animation-name: fadeInRightBig;">
+
+                <div class="m-3">
+                    <img src="assets/images/AfzarAzma/Shape/award (2).png">
+                </div>
+                <p class="counter-one__text m-2">@Localizer["Approved"]</p>
+                <div class="services-two__bottom">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+
+                            <a  class="col-xl-4 col-lg-4 col-md-4 wow fadeInUp animated" data-wow-delay="300ms"style="visibility: visible; animation-delay: 300ms; animation-name: fadeInUp;" href="/CertificatesList" class="d-block text-decoration-none">
+                                <div>
+                                    <div class="services-two__single">
+                                        <div class="services-two__icon-box">
+                                            <img style="max-width: 100px; width:100px; height: 100px;" 
+                                                 src="@Url.Content($"~/Images/{item.IconString}")" ز
+                                                 asp-append-version="true"
+                                                 title="@item.Title" alt="@item.Title">
+                                        </div>
+                                        <h3 class="services-two__title">@item.Title</h3>
+                                    </div>
+                                </div>
+                            </a>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

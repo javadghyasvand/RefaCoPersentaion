@@ -1,0 +1,124 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model My_ShopQuery.Contract.Footer.FooterQueryModel
+@inject IViewLocalizer Localizer
+
+<footer class="site-footer">
+    <div class="site-footer-bg" >
+    </div>
+    <div class="container ">
+        <div class="site-footer__top ">
+            <div class="row ">
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUpBig " data-wow-delay="600ms ">
+                    <div class="footer-widget__column footer-widget__about ">
+                        <div class="footer-widget__logo ">
+                            <a href="/"><img style="width:200px!important;" src="~/Images/@Model.SiteLogoQueryModel.Picture" alt="@Model.SiteLogoQueryModel.PictureAlt" title="@Model.SiteLogoQueryModel.PictureTitle"></a>
+                        </div>
+                        <div class="footer-widget__about-text-box ">
+                            <p class="footer-widget__about-text">
+                                @Model.AboutUsQueryModel.ShortDescription
+                            </p>
+                        </div>
+                        <div class="site-footer__social ">
+                            @foreach (var item in Model.SocialMediaQueries)
+                            {
+                                <a href="@item.Link"><i class="fab fa-@item.Title"></i></a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUpBig " data-wow-delay="600ms ">
+                    <div class="footer-widget__column footer-widget__contact clearfix ">
+                        <h3 class="footer-widget__title ">@Localizer["Address"]</h3>
+                        <ul class="footer-widget__contact-list list-unstyled clearfix ">
+                            <li>
+                                <div class="icon ">
+                                    <span class="icon-email "></span>
+                                </div>
+                                <div class="text " style="text-align: justify;word-spacing: -2px;">
+                                    <p><a href="mailto:@Model.GeneralSettingQueryModel.Email">@Model.GeneralSettingQueryModel.Email</a></p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon ">
+                                    <span class="icon-pin "></span>
+                                </div>
+
+                                <div class="text text-justify" style="text-align: justify;word-spacing: -2px;">
+                                    @{
+                                        var address = Model.GeneralSettingQueryModel.Address.Split("#");
+                                        foreach (var item in address)
+                                        {
+                                            <p>
+                                                @item
+                                            </p>
+                                        }
+                                    }
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon ">
+                                    <span class="icon-telephone"></span>
+                                </div>
+                                <div class="text" style="text-align: justify;word-spacing: -2px;">
+                                    @{
+                                        var phone = Model.GeneralSettingQueryModel.PhoneNumbers.Split("#");
+                                        foreach (var item in phone)
+                                        {
+                                            <p><a href="tel:@item">@item</a></p>
+                                        }
+                                    }
+                                </div>
+                            </li>
+                            <div class="site-footer__social">
+                                @if (!string.IsNullOrWhiteSpace(Model.GeneralSettingQueryModel.GoogleLink))
+                                {
+                                    <a target="_blank" href="@Model.GeneralSettingQueryModel.GoogleLink">
+                                        <img width="30" height="30" src="/Images/app-logos/googlemap.png" />
+                                    </a>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(Model.GeneralSettingQueryModel.WaysLink))
+                                {
+                                    <a target="_blank" href="@Model.GeneralSettingQueryModel.WaysLink">
+                                        <img width="30" height="30" src="/Images/app-logos/wayz-logo.png" />
+                                    </a>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(Model.GeneralSettingQueryModel.BaladLink))
+                                {
+                                    <a target="_blank" href="@Model.GeneralSettingQueryModel.BaladLink">
+                                        <img width="30" height="30" src="/Images/app-logos/balad-logo.png"/>
+                                    </a>
+                                }
+                              
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUpBig " data-wow-delay="600ms ">
+                    <div class="footer-widget__column footer-widget__contact clearfix ">
+                        <h3 class="footer-widget__title ">@Localizer["QuickLinks"]</h3>
+                        <ul class="footer-widget-two__links-list list-unstyled clearfix">
+                            <li><a href="/AboutUs">@Localizer["AboutUs"]</a></li>
+                            <li><a href="/ProductList">@Localizer["Products"]</a></li>
+                            <li><a href="/ArticleList">@Localizer["Articles"]</a></li>
+                            <li><a href="/EventList">@Localizer["NEWS"]</a></li>
+                            <li><a href="/Faq">@Localizer["FAQ"]</a></li>
+                            <li><a href="/ContactUs">@Localizer["ContactUs"] </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-footer__bottom ">
+            <div class="row ">
+                <div class="col-xl-12 ">
+                    <div class="site-footer__bottom-inner ">
+                        <p class="site-footer__bottom-text ">
+                            Copyright © 2024 <a href="https://www.afzarazma.com/">Afzarazma</a>- All rights reserved || Designed By: <a href="https://maanertebat.com/" target="_blank">Maanertebat</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

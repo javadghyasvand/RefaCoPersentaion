@@ -1,0 +1,64 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.GeneralSetting
+@model IndexModel
+@inject IGeneralSettingQueryModel GeneralSetting
+@inject IViewLocalizer Localizer
+@{
+    var general = GeneralSetting.GeneralSettingQueryModel();
+    ViewData["Title"] = Localizer["Title"];
+    ViewData["keywords"] = general.MetaKeywords;
+    ViewData["metaDescription"] = general.MetaDescription;
+}
+
+@await Component.InvokeAsync("Slider")
+@await Component.InvokeAsync("Categories")
+@await Component.InvokeAsync("WhyChoose")
+@await Component.InvokeAsync("AboutUs")
+@await Component.InvokeAsync("LatestProduct")
+@await Component.InvokeAsync("LatestEvents")
+@await Component.InvokeAsync("LatestArticles")
+
+
+
+
+@section Scripts{
+    <script>
+        const swiper = new Swiper('.swiper-container',
+            {
+                autoplay: {
+                    delay: 2000, // 2 seconds per slide
+                    disableOnInteraction: false,
+                },
+                loop: true,
+                effect: 'fade', // Fade effect to avoid slide stacking
+                fadeEffect: {
+                    crossFade: true, // Smooth fade transition
+                },
+                speed: 800, // Speed of the fade transition
+            });
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const playButton = document.getElementById("playButton");
+                const video = document.getElementById("infoVideo");
+
+                // اضافه کردن رویداد کلیک به کل پلیر (ویدیو + دکمه پخش)
+                const playerContainer = video.parentElement; // والد ویدیو
+                playerContainer.addEventListener("click", function (event) {
+                    if (video.paused) {
+                        video.play(); // شروع پخش ویدیو
+                        playButton.style.display = "none"; // مخفی کردن دکمه پخش
+                    } else {
+                        video.pause(); // توقف پخش ویدیو
+                    }
+                });
+
+                // وقتی ویدیو تمام شد، دکمه پلی دوباره نمایش داده شود
+                video.addEventListener("ended", function () {
+                    playButton.style.display = "block"; // نمایش دوباره دکمه پخش
+                });
+            });
+
+    </script>
+}

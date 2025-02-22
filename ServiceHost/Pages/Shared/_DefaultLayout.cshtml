@@ -1,0 +1,164 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using My_ShopQuery.Contract.SiteLogo
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject ISiteLogoQueryModel LogoQueryModel
+@inject IViewLocalizer Localizer
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @{
+        var logo = LogoQueryModel.GetLogo();
+        <link rel="icon" type="image/x-icon" href="~/Images/@logo.Picture">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        @if (ViewData["Title"] != null)
+        {
+            <title>@logo.Title | @ViewData["Title"]</title>
+        }
+        else
+        {
+            <title>@logo.Title</title>
+        }
+    }
+    @if (CultureInfo.CurrentCulture.Name == "ru-RU")
+    {
+        <link href="~/css/CustomStyle-ru.css" rel="stylesheet" />
+    }
+    @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+    {
+        <link rel="stylesheet" href="~/assets/css/insur-rtl-1.3.css">
+        <link rel="stylesheet" href="~/assets/css/insur-rtl-custom-1.1.css">
+        <link rel="stylesheet" href="~/assets/css/insur-responsive-rtl1.0.css">
+        <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/assets/css/googleapis.css" rel="stylesheet">
+        <link rel="stylesheet" href="~/assets/css/animate.min.css">
+        <link rel="stylesheet" href="~/assets/css/custom-animate.css">
+        <link rel="stylesheet" href="~/assets/css/all.min.css">
+        <link rel="stylesheet" href="~/assets/css/jarallax.css">
+        <link rel="stylesheet" href="~/assets/css/jquery.magnific-popup.css">
+        <link rel="stylesheet" href="~/assets/css/nouislider.min.css">
+        <link rel="stylesheet" href="~/assets/css/nouislider.pips.css">
+        <link rel="stylesheet" href="~/assets/css/odometer.min.css">
+        <link rel="stylesheet" href="~/assets/css/swiper.min.css">
+        <link rel="stylesheet" href="~/assets/css/icons-style.css">
+        <link rel="stylesheet" href="~/assets/css/icons-two-style.css">
+        <link rel="stylesheet" href="~/assets/css/tiny-slider.min.css">
+        <link rel="stylesheet" href="~/assets/css/stylesheet.css">
+        <link rel="stylesheet" href="~/assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="~/assets/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="~/assets/css/jquery.bxslider.css">
+        <link rel="stylesheet" href="~/assets/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="~/assets/css/vegas.min.css">
+        <link rel="stylesheet" href="~/assets/css/jquery-ui.css">
+        <link rel="stylesheet" href="~/assets/css/timePicker.css">
+        <link rel="stylesheet" href="~/assets/css/ion.rangeSlider.min.css">
+        <link href="~/css/CustomStyle-rlt1.0.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="~/AdminTheme/assets/css/persian-datepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/AdminTheme/assets/css/persian-datepicker.min.css" rel="stylesheet" type="text/css" />
+
+    }
+    else
+    {
+        <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/assets/css/animate.min.css">
+        <link rel="stylesheet" href="~/assets/css/custom-animate.css">
+        <link rel="stylesheet" href="~/assets/css/all.min.css">
+        <link rel="stylesheet" href="~/assets/css/jarallax.css">
+        <link rel="stylesheet" href="~/assets/css/jquery.magnific-popup.css">
+        <link rel="stylesheet" href="~/assets/css/nouislider.min.css">
+        <link rel="stylesheet" href="~/assets/css/nouislider.pips.css">
+        <link rel="stylesheet" href="~/assets/css/odometer.min.css">
+        <link rel="stylesheet" href="~/assets/css/swiper.min.css">
+        <link rel="stylesheet" href="~/assets/css/icons-style.css">
+        <link rel="stylesheet" href="~/assets/css/icons-two-style.css">
+        <link rel="stylesheet" href="~/assets/css/tiny-slider.min.css">
+        <link rel="stylesheet" href="~/assets/css/stylesheet.css">
+        <link rel="stylesheet" href="~/assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="~/assets/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="~/assets/css/jquery.bxslider.css">
+        <link rel="stylesheet" href="~/assets/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="~/assets/css/vegas.min.css">
+        <link rel="stylesheet" href="~/assets/css/jquery-ui.css">
+        <link rel="stylesheet" href="~/assets/css/timePicker.css">
+        <link rel="stylesheet" href="~/assets/css/ion.rangeSlider.min.css">
+        <link rel="stylesheet" id="langLtr" href="~/assets/css/insur-1.2.css">
+        <link rel="stylesheet" href="~/assets/css/insur-responsive1.0.css">
+        <link href="~/css/CustomStyle1.0.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    }
+    <link rel="stylesheet" href="~/assets/js/datepicker/jalalidatepicker.min.css">
+
+
+
+
+    @await RenderSectionAsync("Css", required: false)
+</head>
+
+<body>
+    <div class="page-wrapper" style="background:#A28CD3">
+        @await Component.InvokeAsync("Navbar")
+        @await Component.InvokeAsync("MobileNavbar")
+        @RenderBody()
+        @await Component.InvokeAsync("Footer")
+    </div>
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <div class="search-popup__content">
+            <form method="get" asp-page="/Search">
+                <label for="search" class="sr-only">@Localizer["Search"]</label>
+                <input type="text" id="search" name="value" placeholder="@Localizer["Search"]">
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="icon-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <a href="#" data-target="html " class="scroll-to-target scroll-to-top ">
+        <i class="fa fa-angle-up "></i>
+    </a>
+
+    <!-- JS here -->
+    <script src="~/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/jarallax.min.js"></script>
+    <script src="~/assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/assets/js/jquery.appear.min.js"></script>
+    <script src="~/assets/js/jquery.circle-progress.min.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/jquery.validate.min.js"></script>
+    <script src="~/assets/js/nouislider.min.js"></script>
+    <script src="~/assets/js/odometer.min.js"></script>
+    <script src="~/assets/js/swiper.min.js"></script>
+    <script src="~/assets/js/tiny-slider.min.js"></script>
+    <script src="~/assets/js/wNumb.min.js"></script>
+    <script src="~/assets/js/wow.js"></script>
+    <script src="~/assets/js/isotope.js"></script>
+    <script src="~/assets/js/countdown.min.js"></script>
+    <script src="~/assets/js/owl.carousel.min.js"></script>
+    <script src="~/assets/js/jquery.bxslider.min.js"></script>
+    <script src="~/assets/js/bootstrap-select.min.js"></script>
+    <script src="~/assets/js/vegas.min.js"></script>
+    <script src="~/assets/js/jquery-ui.js"></script>
+    <script src="~/assets/js/timePicker.js"></script>
+    <script src="~/assets/js/jquery.circleType.js"></script>
+    <script src="~/assets/js/jquery.lettering.min.js"></script>
+    <script src="~/assets/js/ion.rangeSlider.min.js"></script>
+    <script src="~/assets/js/datepicker/jalalidatepicker.min.js"></script>
+    <script src="/assets/js/insur.js"></script>
+
+    <script type="text/javascript">
+        !function () { var i = "n2unQc", a = window, d = document; function g() { var g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); } "complete" === d.readyState ? g() : a.attachEvent ? a.attachEvent("onload", g) : a.addEventListener("load", g, !1); }();
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

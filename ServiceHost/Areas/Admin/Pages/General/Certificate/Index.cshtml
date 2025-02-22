@@ -1,0 +1,75 @@
+﻿@page
+@model ServiceHost.Areas.Admin.Pages.General.Certificate.IndexModel
+@{
+    Layout = "Shared/_AdminLayout";
+    ViewData["title"] = "گواهینامه ها";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title pull-right">@ViewData["title"]</h4>
+        <p class="pull-left">
+            <a class="btn btn-success btn-rounded waves-effect m-b-5 btn-lg" asp-page="./Create">افزودن گواهینامه</a>
+        </p>
+    </div>
+</div>
+
+<div class="row" id="ProductCategoriesDiv">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">لیست گواهینامه ها</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>عنوان</th>
+                                <th>عکس</th>
+                                <th>لوگو</th>
+                                <th>عملیات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in  Model.CertificateViewModels)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Title</td>
+                                    <td>
+                                        <img src="~/Images/@item.ImageString" style="width: 70px; height: 70px"/>
+                                    </td>
+                                    <td>
+                                        <img src="~/Images/@item.IconString" style="width: 70px; height: 70px"/>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning btn-rounded btn-sm btn-block waves-effect m-b-5" asp-page="./Edit" asp-route-id="@item.Id">
+                                            <i class="fa fa-edit"></i> ویرایش
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable();
+        });
+    </script>
+}

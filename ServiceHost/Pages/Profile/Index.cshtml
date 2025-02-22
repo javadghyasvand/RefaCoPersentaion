@@ -1,0 +1,149 @@
+﻿@page "/Profile"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@attribute [Authorize(Policy = "UserPanel")]
+@model IndexModel
+@inject IViewLocalizer Localizer
+
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li><span>/</span></li>
+                <li>
+                    <h6>@Localizer["Profile"]</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- Profile Section -->
+<section class="news-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-lg-4">
+                <div class="sidebar">
+                    <div class="sidebar__single sidebar__category">
+                        <h3 class="sidebar__title text-center">@($"{Model.UserProfile.FirstName} {Model.UserProfile.LastName}")</h3>
+                        <ul class="sidebar__category-list list-unstyled">
+                            <li class="active">
+                                <a href="/Profile">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile__pic">
+                                            <i class="far fa-user"></i>
+                                        </div>
+                                        @Localizer["UserInformation"]
+                                    </div>
+                                    <span class="fas fa-angle-double-left"></span>
+                                </a>
+                            </li>
+                            @* <li> *@
+                            @*     <a href="/Admin"> *@
+                            @*         <div class="d-flex align-items-center"> *@
+                            @*             <div class="profile__pic"> *@
+                            @*                 <i class="fa fa-sign-out"></i> *@
+                            @*             </div> *@
+                            @*             @Localizer["Admin"] *@
+                            @*         </div> *@
+                            @*         <span class="fas fa-angle-double-left"></span> *@
+                            @*     </a> *@
+                            @* </li> *@
+                            <li>
+                                <a href="/logout">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile__pic">
+                                            <i class="fa fa-sign-out"></i>
+                                        </div>
+                                        @Localizer["LogOut"]
+                                    </div>
+                                    <span class="fas fa-angle-double-left"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-5">
+                <div class="sidebar">
+                    <div class="sidebar__single sidebar__category" style="background-color:#e9ecef !important;">
+                        <h2 class="text-center"> @Localizer["UserInformation"]</h2>
+                        <ul class="list-unstyled mx-4">
+                            <li class="profile__list">
+                                <div>@Localizer["FirstName"]</div>
+                                <div>@Model.UserProfile.FirstName</div>
+                            </li>
+                            <li class="profile__list">
+                                <div>@Localizer["LastName"]</div>
+                                <div>@Model.UserProfile.LastName</div>
+                            </li>
+                            <li class="profile__list">
+                                <div>@Localizer["RegistrationDate"]</div>
+                                <div>@Model.UserProfile.RegistrationDate</div>
+                            </li>
+                            <li class="profile__list">
+                                <div>@Localizer["PhoneNumber"]</div>
+                                <div>@Model.UserProfile.PhoneNumber</div>
+                            </li>
+                            <li class="profile__list">
+                                <div>@Localizer["Email"]</div>
+                                <div>@Model.UserProfile.Email</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<input type="hidden" name="__RequestVerificationToken" value="@Model.RequestVerificationToken" />
+
+
+
+
+@section Scripts 
+{
+ <script>
+    document.getElementById('addEmailBtn')?.addEventListener('click', function () {
+        Swal.fire({
+            title: 'افزودن ایمیل',
+            input: 'email',
+            inputLabel: 'ایمیل خود را وارد کنید',
+            inputPlaceholder: 'example@example.com',
+            showCancelButton: true,
+            confirmButtonText: 'ذخیره',
+            cancelButtonText: 'لغو',
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'ایمیل نمی‌تواند خالی باشد!';
+                }
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const email = result.value;
+                // Send the email to the backend
+                fetch('/Profile?handler=SetEmail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    },
+                        body: JSON.stringify(email)
+                }).then(response => {
+                    if (response.ok) {
+                        Swal.fire('ذخیره شد!', 'ایمیل با موفقیت ذخیره شد.', 'success')
+                            .then(() => location.reload());
+                    } else {
+                        Swal.fire('خطا!', 'مشکلی در ذخیره ایمیل رخ داد.', 'error');
+                    }
+                }).catch(() => {
+                    Swal.fire('خطا!', 'مشکلی در ذخیره ایمیل رخ داد.', 'error');
+                });
+            }
+        });
+    });
+</script>
+
+}

@@ -1,0 +1,75 @@
+﻿@using System.Globalization;
+@model List<My_ShopQuery.Contract.Slide.SlideQueryModel>
+
+<div class="slider-container" >
+    @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+    {
+     
+        <div class="w-100" style="z-index:1000;">
+            <video class="video-background" autoplay muted loop>
+              <source src="https://afzarazma.s3.ir-thr-at1.arvanstorage.ir/Video%2FReverse-resized.mp4?versionId=" type="video/mp4" />
+            </video>  
+        </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <div class="swiper-slide">
+                            <h1 class="slider-h1">
+                                @item.Heading
+                            </h1>
+                            <h2>@item.Text</h2>
+
+                            @* <a href="@item.Link" class="thm-btn main-slider__btn">@item.BtnText</a> *@
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="swiper-slide">
+                        <h2>اسلایدری وجود ندارد</h2>
+                    </div>
+                }
+
+            </div>
+        </div>
+    }
+    else
+    {
+
+        <div class="w-100">
+            <video class="video-background" autoplay muted loop>
+                <source src="https://afzarazma.s3.ir-thr-at1.arvanstorage.ir/Video%2FComp%201-resized.mp4?versionId=" type="video/mp4" />
+            </video>
+        </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @if (Model != null)
+                { 
+                    @foreach (var item in Model)
+                    {
+                        <div class="swiper-slide">
+                            <h1 class="slider-h1">
+                                @item.Text
+                            </h1>
+                            <h2>@item.Heading</h2>
+                            <a href="@item.Link" class="thm-btn main-slider__btn">@item.BtnText</a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="swiper-slide">
+                        <h2>اسلایدری وجود ندارد</h2>
+                    </div>
+                }
+
+            </div>
+        </div>
+        
+     
+    }
+   
+</div>

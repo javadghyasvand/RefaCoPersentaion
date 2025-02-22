@@ -1,0 +1,160 @@
+﻿@page "/Support"
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.GeneralSetting
+@model ComplaintModel
+@inject IViewLocalizer Localizer
+@inject IGeneralSettingQueryModel GeneralSetting
+
+@{
+    ViewData["Title"] = Localizer["Header"];
+}
+
+
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li>
+                    <span>/</span>
+                </li>
+                <li>
+                    <h6>@Localizer["Header"]</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="team-one team-two" style="padding-top: 50px;">
+    <div class="container">
+        <div class="section-sub-title-box" style="margin: 50px">
+            <h1 class="section-sub-title">@Localizer["WarrantyGuide"]</h1>
+            @if (CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+            {
+                <div class="section-title-shape-1">
+                    <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                </div>
+                <div class="section-title-shape-2">
+                    <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                </div>
+            }
+            else
+            {
+                <div class="section-title-shape-1">
+                    <img src="~/assets/images/AfzarAzma/Background/003.png" alt="">
+                </div>
+                <div class="section-title-shape-2">
+                    <img src="~/assets/images/AfzarAzma/Background/004.png" alt="">
+                </div>
+            }
+        </div>
+        <div class="col-md-12">
+            <div class="tilte-waranty">
+                <div class="wow fadeInUp animated" data-wow-delay="100ms"
+                     style="visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
+                    @Html.Raw(Model.SupportQueryModel.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="team-one team-two" style="padding-top: 50px;">
+    <div class="container">
+        <div class="row">
+
+            <div class="message-one__form">
+                <p class="h2 text-center mb-4">@Localizer["Complaint"]</p>
+                <div class="Form-style">
+                    <form method="post" id="ComplaintForm" novalidate="novalidate">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="comment-form__input-box">
+                                    <input type="text" placeholder="@Localizer["Name"]" name="FullName">
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="comment-form__input-box">
+                                    <input type="tel" placeholder="@Localizer["Mobile"]" name="Mobile">
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="col-md-12 comment-form__input-box ms-1">
+                                    <input type="tel" name="PhoneNumber" placeholder="@Localizer["PhoneNumber"]">
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="col-md-12 comment-form__input-box 1">
+                                    <input type="email" name="Email" placeholder="@Localizer["Email"]">
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="comment-form__input-box">
+                                    <select name="ProductId" asp-items="Model.Products" class="form-select CustomSelect">
+                                        <option hidden value="0">@Localizer["Product"]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="col-md-12 comment-form__input-box 1">
+                                    <input type="text" name="Title" placeholder="@Localizer["Subject"]">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="comment-form__input-box text-message-box">
+                                    <textarea name="Message" placeholder="@Localizer["Description"]"></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" name="ParentId" value="1"/>
+                            <input type="hidden" name="SatisfactionLevel" value="1"/>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div>
+                                    <button type="submit" class="thm-btn comment-form__btn">
+                                        @Localizer["Registration"]
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section Css
+{
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            margin-right: 10px; /* این خط برای راست‌چین بودن اضافه شده */
+            margin-left: 10px; /* این خط برای چپ‌چین بودن اضافه شده */
+            display: block;
+        }
+
+        input.error, select.error, textarea.error {
+            border: 1px solid red !important;
+            background-color: #ffe6e6;
+        }
+
+        .comment-form__input-box { position: relative; }
+
+        .comment-form__input-box .error {
+            margin-top: 5px;
+            margin-bottom: 10px; /* اضافه کردن فاصله پایین برای ارور */
+        }
+
+    </style>
+}
+
+@section Scripts {
+    <script src="~/assets/js/validationcomplaintform.js"></script>
+}

@@ -1,0 +1,305 @@
+﻿@page "/Tutorial"
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using My_ShopQuery.Contract.GeneralSetting
+@model IndexModel
+@inject IViewLocalizer Localizer
+@inject IGeneralSettingQueryModel GeneralSetting
+<form method="post">
+    @Html.AntiForgeryToken()
+</form>
+@{
+    var general = GeneralSetting.GeneralSettingQueryModel();
+    ViewData["Title"] = Localizer["Tutorial"];
+    ViewData["keywords"] = general.MetaKeywords;
+    ViewData["metaDescription"] = general.MetaDescription;
+}
+
+<section class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+            <ul class="thm-breadcrumb list-unstyled">
+                <li>
+                    <a href="/">@Localizer["Home"]</a>
+                </li>
+                <li>
+                    <span>/</span>
+                </li>
+                <li>
+                    <h6>@Localizer["Tutorial"]</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="container" style="margin-top: 5rem;">
+    <div class="row">
+        @foreach (var item in Model.TutorialModel.IntroductionVideoQueryModels)
+        {
+            <div class="col-xl-12" style="margin-bottom: 5rem;">
+                <div class="get-insuracne-two__right">
+                    <div class="get-insuracne-two__tab clearfix">
+                        <div class="get-insuracne-two__tab-box tabs-box clearfix text-left"
+                             style="text-align: left !important;">
+                            <button type="button" class="main-slider-two__video-icon" id="player-@item.Id"
+                                    onclick="Play('infoVideo-@item.Id', 'player-@item.Id')">
+                                <span class="fa fa-play player-span"></span>
+                                <i class="ripple"></i>
+                            </button>
+                            <video id="infoVideo-@item.Id" width="100%" preload="none"
+                                   poster="~/images/@item.Poster" style="box-shadow: grey 2px 2px 5px; border-radius: 15px" controls>
+                                <source src="@item.Link" type="video/mp4">
+                                مرورگر شما از پخش این ویدئو پشتیبانی نمی‌کند.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <!--pricing Start-->
+    <section class="pricing">
+        <div class="container">
+            <div class="section-title text-center">
+                <div class="section-sub-title-box">
+                    <p class="section-sub-title">@Localizer["EducationalVideos"]</p>
+                    <div class="section-title-shape-1">
+                        <img src="assets/images/AfzarAzma/Background/004.png" alt="">
+                    </div>
+                    <div class="section-title-shape-2">
+                        <img src="assets/images/AfzarAzma/Background/003.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing__tab">
+                <div class="pricing__tab-box tabs-box">
+                    <div class="tabs-content">
+                        <div class="tab active-tab" id="monthly">
+                            <div class="pricing__main-content-box">
+                                <div class="row">
+                                    @foreach (var item in Model.TutorialModel.TutorialVideoQueryModels)
+                                    {
+                                        <div class="col-xl-4 col-lg-4">
+                                            <div class="pricing__single">
+                                                <div class="testimonial-one__shape-1">
+                                                    <img src="assets/images/shapes/feature-three-shape.png" alt="">
+                                                </div>
+
+                                                <div class="video-wrapper" style="position: relative;">
+                                                    <!-- ویدیو -->
+                                                    <video id="video-@item.Id" preload="none" width="100%" poster="~/images/@item.PosterStr" controls="false" style="pointer-events: none;">
+                                                        <source src="@item.LinkFa" type="video/mp4">
+                                                    </video>
+
+                                                    <!-- دکمه پخش -->
+                                                    <button id="play-btn-@item.Id" class="play-button" onclick="handlePlayButtonClick(@item.Id)"
+                                                            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.7); color: white; border: none; padding: 15px; cursor: pointer; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                                        <i class="fa fa-play" style="font-size: 24px;"></i>
+                                                    </button>
+                                                </div>
+
+                                                <div class="pricing__single-bottom">
+                                                    <div class="text-center">
+                                                        @{
+                                                            var test = CultureInfo.CurrentCulture.DisplayName;
+                                                            @if (test.Trim() == "Russian (Russia)")
+                                                            {
+                                                                <p style="height: 100px" class="text-light m-2">@item.TitleRu</p>
+                                                            }
+                                                            else if (test.Trim() == "English (United States)")
+                                                            {
+                                                                <p style="height: 100px" class="text-light m-2"> @item.TitleEn </p>
+                                                            }
+                                                            else if (test.Trim() == "Arabic")
+                                                            {
+                                                                <p style="height: 100px" class="text-light m-2"> @item.TitleAr </p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p style="height: 100px" class="text-light m-2"> @item.TitleFa </p>
+                                                            }
+                                                        }
+                                                    </div>
+                                                    <table class="table table-striped">
+                                                        <tbody>
+                                                        <tr class="text-light">
+                                                            <td></td>
+                                                            <td>FA</td>
+                                                            <td>EN</td>
+                                                            <td>RU</td>
+                                                            <td>AR</td>
+                                                        </tr>
+                                                        <tr class="text-light">
+                                                            <td>@Localizer["Video"]</td>
+                                                            @if (!string.IsNullOrWhiteSpace(item.LinkFa))
+                                                            {
+                                                                <td>
+                                                                    <a target="_blank" href="@item.LinkFa">
+                                                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                                                    </a>
+                                                                </td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td>
+                                                                    <a>
+                                                                        <i class="fa fa-play disabled" aria-hidden="false"></i>
+                                                                    </a>
+                                                                </td>
+                                                            }
+
+                                                            @if (!string.IsNullOrWhiteSpace(item.LinkEn))
+                                                            {
+                                                                <td>
+                                                                    <a target="_blank" href="@item.LinkEn">
+                                                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                                                    </a>
+                                                                </td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td>
+                                                                    <a>
+                                                                        <i class="fa fa-play disabled" aria-hidden="false"></i>
+                                                                    </a>
+                                                                </td>
+                                                            }
+                                                            @if (!string.IsNullOrWhiteSpace(item.LinkRu))
+                                                            {
+                                                                <td>
+                                                                    <a target="_blank" href="@item.LinkRu">
+                                                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                                                    </a>
+                                                                </td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td>
+                                                                    <a>
+                                                                        <i class="fa fa-play disabled" aria-hidden="false"></i>
+                                                                    </a>
+                                                                </td>
+                                                            }
+                                                            @if (!string.IsNullOrWhiteSpace(item.LinkAr))
+                                                            {
+                                                                <td>
+                                                                    <a target="_blank" href="@item.LinkAr">
+                                                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                                                    </a>
+                                                                </td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td>
+                                                                    <a>
+                                                                        <i class="fa fa-play disabled" aria-hidden="false"></i>
+                                                                    </a>
+                                                                </td>
+                                                            }
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@section Css
+{
+    <style>
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .play-button i {
+            color: white;
+            font-size: 24px;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+    </style>
+}
+
+@section Scripts {
+
+    <script>
+        function handlePlayButtonClick(videoId) {
+            const videoElement = document.getElementById(`video-${videoId}`);
+            const playButton = document.getElementById(`play-btn-${videoId}`);
+
+            // ارسال درخواست AJAX با استفاده از query string
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+            fetch(`/Tutorial?handler=LogVideoView&videoId=${videoId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': token
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Video view logged successfully!');
+
+                        // فعال‌سازی کنترل‌ها و پخش ویدیو
+                        if (videoElement) {
+                            videoElement.setAttribute('controls', 'true');
+                            videoElement.style.pointerEvents = 'auto';
+                            videoElement.play();
+                        }
+
+                        // مخفی کردن دکمه پخش
+                        if (playButton) {
+                            playButton.style.display = 'none';
+                        }
+                    } else {
+                        console.error('Failed to log video view');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+        function Play(videoId, playerId) {
+            var videoElement = document.getElementById(videoId);
+            var playerElement = document.getElementById(playerId);
+
+            if (videoElement && playerElement) {
+                videoElement.play();
+                playerElement.style.display = 'none';
+                videoElement.setAttribute("controls", "true");
+            } else {
+                console.error("Element not found. Check videoId or playerId.");
+            }
+        }
+    </script>
+}
+

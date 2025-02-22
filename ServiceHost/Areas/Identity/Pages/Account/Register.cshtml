@@ -1,0 +1,96 @@
+﻿@page "/AccountRegister/Register"
+@using Microsoft.AspNetCore.Mvc.Localization
+@model ServiceHost.Areas.Identity.Pages.Account.RegisterModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["Registration"];
+}
+
+
+<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+<div class="panel panel-color panel-primary panel-pages">
+    <div class="panel-heading bg-img">
+        <div class="bg-overlay"></div>
+        <h3 class="text-center m-t-10 text-white">@ViewData["Title"]</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal m-t-20" method="post" asp-antiforgery="true">
+            <div class="form-floating mb-3" style="margin: 5px">
+                <input class="form-control input-lg" asp-for="Input.FirstName" aria-required="true" placeholder="@Localizer["Name"]" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3" style="margin: 5px">
+                <input class="form-control input-lg" asp-for="Input.LastName" aria-required="true" placeholder="@Localizer["LastName"]" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3" style="margin: 5px">
+                <input class="form-control input-lg" asp-for="Input.PhoneNumber" aria-required="true" placeholder="@Localizer["Mobile"]" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3" style="margin: 5px">
+                <input class="form-control input-lg" asp-for="Input.Email" aria-required="true" placeholder="@Localizer["Email"]" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3" style="margin: 5px">
+                <input class="form-control input-lg" asp-for="Input.NationalCode" aria-required="true" placeholder="@Localizer["NationalCode"]" />
+                <span asp-validation-for="Input.NationalCode" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3" style="margin: 5px">
+                <input class="form-control input-lg" asp-for="Input.Position" aria-required="true" placeholder="@Localizer["Position"]" />
+                <span asp-validation-for="Input.Position" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3" style="margin: 5px">
+                <input class="form-control input-lg" asp-for="Input.OrganizationName" aria-required="true" placeholder="@Localizer["OrganizationName"]" />
+                <span asp-validation-for="Input.OrganizationName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3" style="margin: 5px">
+                <input class="form-control input-lg" asp-for="Input.Password" aria-required="true" placeholder="@Localizer["Password"]" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center m-t-40">
+                <div class="col-xs-12">
+                    <button class="btn btn-primary btn-lg w-lg waves-effect waves-light"  type="submit">@Localizer["RegistrationSend"]</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section Css
+{
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            margin-right: 10px; /* این خط برای راست‌چین بودن اضافه شده */
+            margin-left: 10px; /* این خط برای چپ‌چین بودن اضافه شده */
+            display: block;
+        }
+
+        input.error, select.error, textarea.error {
+            border: 1px solid red !important;
+            background-color: #ffe6e6;
+        }
+
+        .comment-form__input-box {
+            position: relative;
+        }
+
+        .comment-form__input-box .error {
+            margin-top: 5px;
+            margin-bottom: 10px; /* اضافه کردن فاصله پایین برای ارور */
+        }
+        .field-validation-error {
+            text-align: center !important;
+            direction: ltr !important;
+        }
+
+    </style>
+}
+@section Scripts {
+  
+    <partial name="_ValidationScriptsPartial" />
+}
